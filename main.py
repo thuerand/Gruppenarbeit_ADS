@@ -2,5 +2,5 @@
 import subprocess
 
 #Retrieve the news from the cryptopanic API
-subprocess.run(["python", "cryptopanic_News_Request"])
+subprocess.run(["python", "cryptopanic_News_Request.py"])
 
