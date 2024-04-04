@@ -1,6 +1,6 @@
+import os
 import requests
 import pandas as pd
-import os
 
 # Create the subfolder if it doesn't exist
 folder_name = 'Data_cryptonews'
