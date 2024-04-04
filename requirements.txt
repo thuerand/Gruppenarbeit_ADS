@@ -2,6 +2,9 @@ jupyter==1.0.0
 requests==2.31.0
 pymongo==4.6.2 #Different to ASD-Standard
 pandas==2.2.0
+
+
+#Installed but not used
 matplotlib==3.8.2
 seaborn==0.13.2
 plotly==5.18.0
