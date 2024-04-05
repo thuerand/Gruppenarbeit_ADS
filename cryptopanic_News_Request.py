@@ -5,31 +5,30 @@ import requests
 import pandas as pd
 
 def fetch_cryptonews(currencies):
-    # Create the subfolder if it doesn't exist
     folder_name = 'Data_cryptonews'
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
-    # Setup the base URL and API token
+    # Path to the central CSV file for domain management
+    central_csv_path = os.path.join(folder_name, 'HQ_newsagency.csv')
+    
+    # Try to read the central CSV file or create an empty DataFrame if it doesn't exist
+    try:
+        central_df = pd.read_csv(central_csv_path)
+    except FileNotFoundError:
+        central_df = pd.DataFrame(columns=['Domain', 'hq_location'])
+
     base_url = "https://cryptopanic.com/api/v1/posts/?auth_token=40638bc52524aa59273d51fac8edc7d377671007&filter=hot&currencies="
 
     for currency in currencies:
-        # Update the URL for the current currency
         url = base_url + currency
-        
-        # Setup CSV file name based on the currency, saved in the specified folder
         csv_file_path = os.path.join(folder_name, f'{currency}_cryptonews.csv')
         
-        # Get data from the API
         response = requests.get(url)
-        
         if response.status_code == 200:
             data = response.json()
-
-            # Initialize an empty list for flattened data
             flattened_data = []
 
-            # Process each entry in 'results'
             for entry in data['results']:
                 entry_data = {
                     'ID': entry['id'],
@@ -48,20 +47,30 @@ def fetch_cryptonews(currencies):
                 }
                 flattened_data.append(entry_data)
 
-            # Create DataFrame from flattened data
-            new_df = pd.DataFrame(flattened_data)
+                # Add domain to central_df if not already present
+                if entry['domain'] not in central_df['Domain'].values:
+                    # Prepare the new row as a DataFrame
+                    new_row_df = pd.DataFrame([{'Domain': entry['domain'], 'hq_location': pd.NA}])
+                    
+                    # Concatenate the new row DataFrame with the central DataFrame
+                    central_df = pd.concat([central_df, new_row_df], ignore_index=True)
 
-            # Combine new data with existing data, if any, and remove duplicates
+            new_df = pd.DataFrame(flattened_data)
             try:
                 existing_df = pd.read_csv(csv_file_path)
                 updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID'], keep='first')
             except FileNotFoundError:
                 updated_df = new_df.drop_duplicates(subset=['ID'], keep='first')
 
-            # Overwrite the corresponding CSV file with the updated DataFrame
-            updated_df.to_csv(csv_file_path, index=False)
+            # Sort the DataFrame in descending order by 'ID'
+            updated_df.sort_values(by='ID', ascending=False, inplace=True)
 
+            updated_df.to_csv(csv_file_path, index=False)
             print(f"Data for {currency} has been updated in {csv_file_path}")
 
         else:
             print(f"Error retrieving data for {currency}: {response.status_code}")
+
+    # Save the updated central domain information
+    central_df.to_csv(central_csv_path, index=False)
+    print("Central domain information has been updated.")

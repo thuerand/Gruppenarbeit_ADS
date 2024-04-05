@@ -6,11 +6,7 @@ crypto_ids_full = {
     "ETH": "ethereum",
     "USDT": "tether",
     "BNB": "binancecoin",
-    "SOL": "solana",
-    #"XRP": "ripple",
-    #"ADA": "cardano",
-    #"AVAX": "avalanche-2",
-    #"DOGE": "dogecoin"
+    "SOL": "solana"
 }
 
 #Get news of each relevant coin
@@ -21,3 +17,6 @@ fetch_cryptonews(list(crypto_ids_full.keys()))
 from coingecko_market_data import fetch_and_save_crypto_daily_data
 for crypto_symbol, crypto_id in crypto_ids_full.items():
     fetch_and_save_crypto_daily_data(crypto_id)
+
+#Get HQ of the newsagencys from data_cryptonews.csv
+from similaweb_news_hq import get_hq_from_newsagencies

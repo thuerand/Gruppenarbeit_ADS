@@ -1,4 +1,8 @@
 ID,Kind,Positive Votes,Negative Votes,Important Votes,Liked Votes,Disliked Votes,LOL Votes,Toxic Votes,Saved,Comments,published_at,Domain
+19382862,news,3,4,1,2,3,5,0,0,8,2024-04-05T10:00:19Z,ambcrypto.com
+19382840,news,4,3,2,4,1,3,0,0,1,2024-04-05T09:59:26Z,cryptoslate.com
+19382442,news,4,2,3,3,2,2,0,0,1,2024-04-05T06:52:58Z,coinedition.com
+19381740,news,2,5,1,2,4,3,0,1,1,2024-04-04T22:00:23Z,ambcrypto.com
 19380560,news,6,0,0,3,0,0,0,1,0,2024-04-04T14:21:00Z,u.today
 19377430,news,3,3,1,2,3,1,0,2,0,2024-04-03T14:07:44Z,cryptoslate.com
 19369733,news,3,10,0,2,9,5,0,1,1,2024-03-31T17:00:33Z,bitcoinist.com
@@ -8,8 +12,8 @@ ID,Kind,Positive Votes,Negative Votes,Important Votes,Liked Votes,Disliked Votes
 19358344,news,8,1,4,5,0,1,0,4,0,2024-03-26T22:01:45Z,zycrypto.com
 19353774,news,5,1,4,5,0,0,0,1,0,2024-03-25T13:32:00Z,u.today
 19346279,news,4,2,1,4,0,0,0,1,0,2024-03-21T17:18:51Z,cointelegraph.com
-19343592,news,1,10,0,1,7,7,0,1,0,2024-03-20T20:00:38Z,newsbtc.com
 19343624,news,1,5,0,2,0,4,0,1,2,2024-03-20T19:30:00Z,beincrypto.com
+19343592,news,1,10,0,1,7,7,0,1,0,2024-03-20T20:00:38Z,newsbtc.com
 19343176,news,5,4,2,4,1,1,0,1,0,2024-03-20T18:00:21Z,ambcrypto.com
 19337058,news,6,5,3,6,2,4,0,1,3,2024-03-18T19:00:16Z,newsbtc.com
 19335368,news,5,1,2,5,1,4,0,1,6,2024-03-18T09:47:00Z,u.today

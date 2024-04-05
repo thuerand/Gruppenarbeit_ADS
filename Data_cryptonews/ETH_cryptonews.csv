@@ -1,4 +1,6 @@
 ID,Kind,Positive Votes,Negative Votes,Important Votes,Liked Votes,Disliked Votes,LOL Votes,Toxic Votes,Saved,Comments,published_at,Domain
+19383166,news,2,6,1,2,2,4,0,0,3,2024-04-05T11:49:36Z,coinjournal.net
+19382864,news,6,0,3,3,0,1,0,0,0,2024-04-05T10:00:44Z,bitcoinist.com
 19369733,news,3,10,0,2,9,5,0,1,1,2024-03-31T17:00:33Z,bitcoinist.com
 19367750,news,5,0,4,5,0,1,0,2,0,2024-03-30T07:04:00Z,coinedition.com
 19365619,news,6,0,5,4,0,0,0,0,0,2024-03-29T09:04:59Z,coinjournal.net
@@ -15,7 +17,7 @@ ID,Kind,Positive Votes,Negative Votes,Important Votes,Liked Votes,Disliked Votes
 19347574,news,8,0,7,4,0,0,0,2,0,2024-03-22T08:27:56Z,coinpaprika.com
 19347552,news,4,3,3,4,1,0,0,4,2,2024-03-22T08:09:11Z,coinpaprika.com
 19344779,news,8,0,4,5,0,0,0,0,0,2024-03-21T09:27:38Z,cryptopolitan.com
-19343592,news,1,10,0,1,7,7,0,1,0,2024-03-20T20:00:38Z,newsbtc.com
 19343624,news,1,5,0,2,0,4,0,1,2,2024-03-20T19:30:00Z,beincrypto.com
+19343592,news,1,10,0,1,7,7,0,1,0,2024-03-20T20:00:38Z,newsbtc.com
 19342958,news,1,7,2,2,3,6,0,1,2,2024-03-20T16:42:04Z,cryptobriefing.com
 19342905,news,1,8,6,1,4,8,0,0,7,2024-03-20T16:28:04Z,en.bitcoinsistemi.com
