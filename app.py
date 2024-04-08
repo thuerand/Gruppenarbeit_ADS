@@ -3,10 +3,10 @@
 # Relevant cryptocurrencies for project (only 5 beacuse of the limitation of coingecko API)
 crypto_ids_full = {
     "BTC": "bitcoin",
-    #"ETH": "ethereum",
-    #"USDT": "tether",
-    #"BNB": "binancecoin",
-    #"SOL": "solana"
+    "ETH": "ethereum",
+    "USDT": "tether",
+    "BNB": "binancecoin",
+    "SOL": "solana"
 }
 
 # Get the Docker thingies
