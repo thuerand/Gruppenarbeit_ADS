@@ -24,7 +24,7 @@ def fetch_cryptonews(currencies):
         url = base_url + currency
         csv_file_path = os.path.join(folder_name, f'{currency}_cryptonews.csv')
         
-        response = requests.get(url)
+        response = requests.get(url, timeout=15)
         if response.status_code == 200:
             data = response.json()
             flattened_data = []
@@ -71,9 +71,16 @@ def fetch_cryptonews(currencies):
 
                         db_cursor.execute(insert_query, insert_values)
                         connection.commit()
+                print("News data for {currency} has been inserted into the database.")
 
             except Error as e:
                 print(f"Failed to insert record into MySQL table: {e}")
+
+            finally:
+                if (connection.is_connected()):
+                    db_cursor.close()
+                    connection.close()
+                    print("MySQL connection is closed.")
 
             new_df = pd.DataFrame(flattened_data)
             try:

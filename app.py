@@ -1,5 +1,7 @@
-# app.py is the main application file used to run the entire application.
-# It imports necessary functions from other files and runs them in the correct order.
+""" 
+    app.py is the main application file used to run the entire application.
+    It imports necessary functions from other files and runs them in the correct order.
+"""
 
 # Import necessary modules and functions
 # Assuming docker_images.py contains functions related to Docker image setup, which wasn't detailed
@@ -17,8 +19,6 @@ crypto_ids_full = {
     "BNB": "binancecoin",
     "SOL": "solana"
 }
-
-
 
 # Run any necessary Docker image installations first
 run_install_Docker_images()

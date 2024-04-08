@@ -2,7 +2,7 @@
 Setup MySQL container using Docker SDK
 """
 import time
-from time import sleep
+
 import docker
 import mysql.connector
 from mysql.connector import Error
@@ -52,9 +52,11 @@ def run_mysql_container():
         print(f"Running new MySQL container with ID: {container.id}")
 
 # Example usage - for testing
-# run_mysql_container()
+#run_mysql_container()
 
 # Create mySQL tables
+
+
 def create_mysql_tables():
     db = mysql.connector.connect(
         host="localhost",
@@ -68,9 +70,9 @@ def create_mysql_tables():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS daily_data (
             id INT AUTO_INCREMENT PRIMARY KEY,
+            ID_Crypto VARCHAR(10),
             value DECIMAL(10, 2),
-            date DATE,
-            crypto_id VARCHAR(10)
+            date DATE
         )
     """)
     # Table creation for 'crypto_news'
@@ -105,14 +107,15 @@ def create_mysql_tables():
 
     cursor.close()
     db.close()
+    print("MySQL tables created successfully.")
 
 # Example usage - for testing
 # create_mysql_tables()
 
-"""
-Wait for the MySQL container to be ready to accept connections
-Sometimes the creation of the MySQL container takes a while. This function waits for the container to be ready to accept connections.
-"""
+# Wait for the MySQL container to be ready to accept connections
+# Sometimes the creation of the MySQL container takes a while. This function waits for the container to be ready to accept connections.
+
+
 def wait_for_mysql_container_ready(host, user, password, database, max_attempts=10, delay=5):
     """Wait for the MySQL container to be ready to accept connections."""
     attempt = 0
