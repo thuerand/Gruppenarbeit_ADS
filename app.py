@@ -1,6 +1,15 @@
-# app.py ist the main application file, which is used to run the entire application. It imports the necessary functions from other files and runs them in the correct order. The following is the content of app.py:
+# app.py is the main application file used to run the entire application.
+# It imports necessary functions from other files and runs them in the correct order.
 
-# Relevant cryptocurrencies for project (only 5 beacuse of the limitation of coingecko API)
+# Import necessary modules and functions
+# Assuming docker_images.py contains functions related to Docker image setup, which wasn't detailed
+from docker_images import run_install_Docker_images
+from mySQL_setup import run_mysql_container, create_mysql_tables, wait_for_mysql_container_ready
+from cryptopanic_News_Request import fetch_cryptonews
+from coingecko_market_data import fetch_and_save_crypto_daily_data
+from similaweb_news_hq import get_hq_from_newsagencies
+
+# Define the relevant cryptocurrencies for the project (limited due to the coingecko API limit)
 crypto_ids_full = {
     "BTC": "bitcoin",
     "ETH": "ethereum",
@@ -9,23 +18,29 @@ crypto_ids_full = {
     "SOL": "solana"
 }
 
-# Get the Docker thingies
-from docker_images import run_install_Docker_images
 
-# Run MySQL container using Docker SDK
-from mySQL_setup import run_mysql_container
 
-# Create mySQL tables
-from mySQL_setup import create_mysql_tables
+# Run any necessary Docker image installations first
+run_install_Docker_images()
 
-# Get news of each relevant coin
-from cryptopanic_News_Request import fetch_cryptonews
-fetch_cryptonews(list(crypto_ids_full.keys()))
+# Run the MySQL container using the Docker SDK
+run_mysql_container()
 
-# Get rate of each relevant coin
-from coingecko_market_data import fetch_and_save_crypto_daily_data
-for crypto_symbol, crypto_id in crypto_ids_full.items():
-    fetch_and_save_crypto_daily_data(crypto_id)
+# Wait for the MySQL container to be ready to accept connections
+if wait_for_mysql_container_ready("localhost", "myuser", "mypassword", "mydatabase"):
+    print("MySQL container is ready. Proceeding with table creation and data fetching.")
 
-#Get HQ of the newsagencys from data_cryptonews.csv
-from similaweb_news_hq import get_hq_from_newsagencies
+    # Create MySQL tables
+    create_mysql_tables()
+    
+    # Get news for each relevant coin
+    fetch_cryptonews(list(crypto_ids_full.keys()))
+    
+    # Get rate of each relevant coin
+    for crypto_id, crypto_name in crypto_ids_full.items():
+        fetch_and_save_crypto_daily_data(crypto_id, crypto_name)
+    
+    # Get HQ of the news agencies from data_cryptonews.csv
+    get_hq_from_newsagencies()
+else:
+    print("Failed to connect to MySQL server after multiple attempts.")

@@ -64,4 +64,5 @@ def get_hq_from_newsagencies():
         # Close the WebDriver
         driver.quit()
 
-get_hq_from_newsagencies()
+# Example usage - for testing
+#get_hq_from_newsagencies()

@@ -1,4 +1,6 @@
-# Installing various Docker images using the Docker SDK
+"""
+Installing various Docker images using the Docker SDK
+"""
 
 # Note:
 # - You could start ChromeDriver via Docker as well but the Version has to fit with Chrome and therefore you have to install chrome too.. it's not worth it.
@@ -15,4 +17,5 @@ def run_install_Docker_images():
 
     print(f"Pulled {image.tags[0]} successfully.")
 
-run_install_Docker_images()
+# Example usage - for testing
+#run_install_Docker_images()

@@ -1,8 +1,12 @@
-# Setup MySQL container using Docker SDK
-
+"""
+Setup MySQL container using Docker SDK
+"""
+import time
+from time import sleep
 import docker
 import mysql.connector
-import pandas as pd
+from mysql.connector import Error
+
 
 # Run the MySQL container using the Docker SDK
 def run_mysql_container():
@@ -20,7 +24,8 @@ def run_mysql_container():
         print(f"Found running MySQL container with ID: {mysql_container.id}")
     elif mysql_container and mysql_container.status == "exited":
         # If the container exists but is not running, start it
-        print(f"Starting existing MySQL container with ID: {mysql_container.id}")
+        print(
+            f"Starting existing MySQL container with ID: {mysql_container.id}")
         mysql_container.start()
     else:
         # Environment variables for the MySQL container
@@ -46,27 +51,10 @@ def run_mysql_container():
 
         print(f"Running new MySQL container with ID: {container.id}")
 
-run_mysql_container()
+# Example usage - for testing
+# run_mysql_container()
 
-# Sometimes the creation of the MySQL container takes a while. This function waits for the container to be ready to accept connections.
-def wait_for_mysql_container_ready(host, user, password, database, max_attempts=10, delay=5):
-    """Wait for the MySQL container to be ready to accept connections."""
-    attempt = 0
-    while attempt < max_attempts:
-        try:
-            connection = mysql.connector.connect(host=host, user=user, password=password, database=database)
-            if connection.is_connected():
-                print("MySQL container is ready to accept connections.")
-                connection.close()
-                return True
-        except Error as e:
-            print(f"Waiting for MySQL container to be ready: {e}")
-            attempt += 1
-            time.sleep(delay)
-    print("MySQL container did not become ready in time.")
-    return False
-
-# Import the data from csv-files to the MySQL container
+# Create mySQL tables
 def create_mysql_tables():
     db = mysql.connector.connect(
         host="localhost",
@@ -118,4 +106,27 @@ def create_mysql_tables():
     cursor.close()
     db.close()
 
-create_mysql_tables()
+# Example usage - for testing
+# create_mysql_tables()
+
+"""
+Wait for the MySQL container to be ready to accept connections
+Sometimes the creation of the MySQL container takes a while. This function waits for the container to be ready to accept connections.
+"""
+def wait_for_mysql_container_ready(host, user, password, database, max_attempts=10, delay=5):
+    """Wait for the MySQL container to be ready to accept connections."""
+    attempt = 0
+    while attempt < max_attempts:
+        try:
+            connection = mysql.connector.connect(
+                host=host, user=user, password=password, database=database)
+            if connection.is_connected():
+                print("MySQL container is ready to accept connections.")
+                connection.close()
+                return True
+        except Error as e:
+            print(f"Waiting for MySQL container to be ready: {e}")
+            attempt += 1
+            time.sleep(delay)
+    print("MySQL container did not become ready in time.")
+    return False

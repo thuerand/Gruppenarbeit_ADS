@@ -92,5 +92,5 @@ def fetch_cryptonews(currencies):
     central_df.to_csv(central_csv_path, index=False)
     print("Domain information from news has been updated.")
 
-# Example usage, with your currencies of interest:
-fetch_cryptonews(["BTC"])
+# Example usage - for testing
+#fetch_cryptonews(["BTC"])
