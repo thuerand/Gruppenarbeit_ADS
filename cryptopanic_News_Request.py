@@ -44,8 +44,18 @@ def fetch_cryptonews(currencies):
                         published_at = parser.parse(entry['published_at']).strftime('%Y-%m-%d %H:%M:%S')
 
                         entry_data = {
-                            'ID_Cryptopanic': entry['id'],
-                            # Other fields omitted for brevity
+                            'ID': entry['id'],
+                            'ID_Cryptopanic': currency,
+                            'Kind': entry['kind'],
+                            'Positive_Votes': entry['votes']['positive'],
+                            'Negative_Votes': entry['votes']['negative'],
+                            'Important_Votes': entry['votes']['important'],
+                            'Liked_Votes': entry['votes']['liked'],
+                            'Disliked_Votes': entry['votes']['disliked'],
+                            'LOL_Votes': entry['votes']['lol'],
+                            'Toxic_Votes': entry['votes']['toxic'],
+                            'Saved': entry['votes']['saved'],
+                            'Comments': entry['votes']['comments'],
                             'published_at': published_at,
                             'Domain': entry['domain'],
                         }
@@ -68,11 +78,11 @@ def fetch_cryptonews(currencies):
             new_df = pd.DataFrame(flattened_data)
             try:
                 existing_df = pd.read_csv(csv_file_path)
-                updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID_Cryptopanic'], keep='first')
+                updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID'], keep='first')
             except FileNotFoundError:
                 updated_df = new_df.drop_duplicates(subset=['ID_Cryptopanic'], keep='first')
 
-            updated_df.sort_values(by='ID_Cryptopanic', ascending=False, inplace=True)
+            updated_df.sort_values(by='ID', ascending=False, inplace=True)
             updated_df.to_csv(csv_file_path, index=False)
             print(f"Data for {currency} has been updated in {csv_file_path}")
 
@@ -83,4 +93,4 @@ def fetch_cryptonews(currencies):
     print("Domain information from news has been updated.")
 
 # Example usage, with your currencies of interest:
-fetch_cryptonews(["BTC", "ETH"])
+fetch_cryptonews(["BTC"])
