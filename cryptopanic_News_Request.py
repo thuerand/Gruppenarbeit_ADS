@@ -45,7 +45,7 @@ def fetch_cryptonews(currencies):
 
                         entry_data = {
                             'ID': entry['id'],
-                            'ID_Cryptopanic': currency,
+                            'ID_Crypto': currency,
                             'Kind': entry['kind'],
                             'Positive_Votes': entry['votes']['positive'],
                             'Negative_Votes': entry['votes']['negative'],
@@ -62,7 +62,7 @@ def fetch_cryptonews(currencies):
                         flattened_data.append(entry_data)
 
                         # Prepare SQL insert statement
-                        insert_query = """INSERT INTO crypto_news (crypto_id, ID_Cryptopanic, Kind, Positive_Votes, Negative_Votes, Important_Votes, Liked_Votes, Disliked_Votes, LOL_Votes, Toxic_Votes, Saved, Comments, published_at, Domain)
+                        insert_query = """INSERT INTO crypto_news (crypto_id, ID_Crypto, Kind, Positive_Votes, Negative_Votes, Important_Votes, Liked_Votes, Disliked_Votes, LOL_Votes, Toxic_Votes, Saved, Comments, published_at, Domain)
                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
                         insert_values = (currency, entry['id'], entry['kind'], entry['votes']['positive'], entry['votes']['negative'], 
                                          entry['votes']['important'], entry['votes']['liked'], entry['votes']['disliked'], 
@@ -80,7 +80,7 @@ def fetch_cryptonews(currencies):
                 existing_df = pd.read_csv(csv_file_path)
                 updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID'], keep='first')
             except FileNotFoundError:
-                updated_df = new_df.drop_duplicates(subset=['ID_Cryptopanic'], keep='first')
+                updated_df = new_df.drop_duplicates(subset=['ID'], keep='first')
 
             updated_df.sort_values(by='ID', ascending=False, inplace=True)
             updated_df.to_csv(csv_file_path, index=False)
