@@ -6,6 +6,7 @@ import os
 from datetime import datetime, timedelta
 
 def fetch_and_save_crypto_daily_data(crypto_id, folder_path='data_cryptocurrency_rate'):
+    print("Fetching daily market data from coingecko.com...")
     end_date = datetime.now()
     start_date = end_date - timedelta(days=15) #Only 15 days because of the free tier of the API
     

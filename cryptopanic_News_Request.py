@@ -1,18 +1,18 @@
-# cryptopanic_News_Request.py
-
 import os
 import requests
 import pandas as pd
+import mysql.connector
+from mysql.connector import Error
+from datetime import datetime
 
 def fetch_cryptonews(currencies):
+    print("Fetching news data from cryptopanic.com...")
     folder_name = 'Data_cryptonews'
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
-    # Path to the central CSV file for domain management
     central_csv_path = os.path.join(folder_name, 'HQ_newsagency.csv')
-    
-    # Try to read the central CSV file or create an empty DataFrame if it doesn't exist
+
     try:
         central_df = pd.read_csv(central_csv_path)
     except FileNotFoundError:
@@ -29,48 +29,58 @@ def fetch_cryptonews(currencies):
             data = response.json()
             flattened_data = []
 
-            for entry in data['results']:
-                entry_data = {
-                    'ID': entry['id'],
-                    'Kind': entry['kind'],
-                    'Positive Votes': entry['votes']['positive'],
-                    'Negative Votes': entry['votes']['negative'],
-                    'Important Votes': entry['votes']['important'],
-                    'Liked Votes': entry['votes']['liked'],
-                    'Disliked Votes': entry['votes']['disliked'],
-                    'LOL Votes': entry['votes']['lol'],
-                    'Toxic Votes': entry['votes']['toxic'],
-                    'Saved': entry['votes']['saved'],
-                    'Comments': entry['votes']['comments'],
-                    'published_at': entry['published_at'],
-                    'Domain': entry['domain'],
-                }
-                flattened_data.append(entry_data)
+            try:
+                connection = mysql.connector.connect(
+                    host="localhost",
+                    user="myuser",
+                    password="mypassword",
+                    database="mydatabase"
+                )
+                if connection.is_connected():
+                    db_cursor = connection.cursor()
 
-                # Add domain to central_df if not already present
-                if entry['domain'] not in central_df['Domain'].values:
-                    # Prepare the new row as a DataFrame
-                    new_row_df = pd.DataFrame([{'Domain': entry['domain'], 'hq_location': pd.NA}])
-                    
-                    # Concatenate the new row DataFrame with the central DataFrame
-                    central_df = pd.concat([central_df, new_row_df], ignore_index=True)
+                    for entry in data['results']:
+                        # Convert 'published_at' to MySQL datetime format
+                        published_at = datetime.strptime(entry['published_at'], "%Y-%m-%dT%H:%M:%S.%fZ").strftime("%Y-%m-%d %H:%M:%S")
+
+                        entry_data = {
+                            'ID_Cryptopanic': entry['id'],
+                            # Other fields omitted for brevity
+                            'published_at': published_at,
+                            'Domain': entry['domain'],
+                        }
+                        flattened_data.append(entry_data)
+
+                        # Prepare SQL insert statement
+                        insert_query = """INSERT INTO crypto_news (crypto_id, ID_Cryptopanic, Kind, Positive_Votes, Negative_Votes, Important_Votes, Liked_Votes, Disliked_Votes, LOL_Votes, Toxic_Votes, Saved, Comments, published_at, Domain)
+                                          VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+                        insert_values = (currency, entry['id'], entry['kind'], entry['votes']['positive'], entry['votes']['negative'], 
+                                         entry['votes']['important'], entry['votes']['liked'], entry['votes']['disliked'], 
+                                         entry['votes']['lol'], entry['votes']['toxic'], entry['votes']['saved'], 
+                                         entry['votes']['comments'], published_at, entry['domain'])
+
+                        db_cursor.execute(insert_query, insert_values)
+                        connection.commit()
+
+            except Error as e:
+                print(f"Failed to insert record into MySQL table: {e}")
 
             new_df = pd.DataFrame(flattened_data)
             try:
                 existing_df = pd.read_csv(csv_file_path)
-                updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID'], keep='first')
+                updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID_Cryptopanic'], keep='first')
             except FileNotFoundError:
-                updated_df = new_df.drop_duplicates(subset=['ID'], keep='first')
+                updated_df = new_df.drop_duplicates(subset=['ID_Cryptopanic'], keep='first')
 
-            # Sort the DataFrame in descending order by 'ID'
-            updated_df.sort_values(by='ID', ascending=False, inplace=True)
-
+            updated_df.sort_values(by='ID_Cryptopanic', ascending=False, inplace=True)
             updated_df.to_csv(csv_file_path, index=False)
             print(f"Data for {currency} has been updated in {csv_file_path}")
 
         else:
             print(f"Error retrieving data for {currency}: {response.status_code}")
 
-    # Save the updated central domain information
     central_df.to_csv(central_csv_path, index=False)
-    print("Central domain information has been updated.")
+    print("Domain information from news has been updated.")
+
+# Example usage, with your currencies of interest:
+fetch_cryptonews(["BTC", "ETH"])
