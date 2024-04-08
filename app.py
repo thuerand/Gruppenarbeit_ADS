@@ -37,6 +37,7 @@ if wait_for_mysql_container_ready("localhost", "myuser", "mypassword", "mydataba
     fetch_cryptonews(list(crypto_ids_full.keys()))
     
     # Get rate of each relevant coin
+    print("Fetching daily market data from coingecko.com...")
     for crypto_id, crypto_name in crypto_ids_full.items():
         fetch_and_save_crypto_daily_data(crypto_id, crypto_name)
     
@@ -44,3 +45,5 @@ if wait_for_mysql_container_ready("localhost", "myuser", "mypassword", "mydataba
     get_hq_from_newsagencies()
 else:
     print("Failed to connect to MySQL server after multiple attempts.")
+
+

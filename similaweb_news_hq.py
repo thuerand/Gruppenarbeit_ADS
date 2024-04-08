@@ -22,7 +22,7 @@ def get_hq_from_newsagencies():
     
     # Only proceed if there are domains that need to be looked up
     if domains_to_lookup.empty:
-        print("Every domain is already looked up.")
+        print("Every Domain already has an HQ location")
     else:
         print("Domains which have to get looked up:")
         print(domains_to_lookup['Domain'].to_list())

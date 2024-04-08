@@ -1,4 +1,4 @@
-ID,ID_Crypto,Kind,Positive_Votes,Negative_Votes,Important_Votes,Liked_Votes,Disliked_Votes,LOL_Votes,Toxic_Votes,Saved,Comments,published_at,Domain
+ID_News,Crypto_Code,Kind,Positive_Votes,Negative_Votes,Important_Votes,Liked_Votes,Disliked_Votes,LOL_Votes,Toxic_Votes,Saved,Comments,published_at,Domain
 19386018,BTC,news,6,0,3,3,0,0,0,0,0,2024-04-06 19:05:00,dailycoin.com
 19382443,BTC,news,11,0,6,9,0,0,0,3,0,2024-04-05 06:51:20,coinpaprika.com
 19381810,BTC,news,6,2,2,4,0,0,0,0,1,2024-04-04 23:00:54,cryptoslate.com

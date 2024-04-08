@@ -13,8 +13,7 @@ from mysql.connector import Error
 
 
 def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_cryptocurrency_rate'):
-    print("Fetching daily market data from coingecko.com...")
-
+    
     # Setting start and end date for the data fetch
     end_date = datetime.now()
     # Fetching data for the last 15 days due to API tier limits
@@ -34,7 +33,7 @@ def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_c
         df['date'] = pd.to_datetime(df['timestamp'], unit='ms').dt.strftime(
             '%Y-%m-%d')  # Formatting directly as string in 'yyyy-mm-dd' format
         df.drop(columns=['timestamp'], inplace=True)  # Drop 'timestamp'
-        df['ID_Crypto'] = crypto_ID  # Assign the 3-character ID
+        df['Crypto_Code'] = crypto_ID  # Assign the 3-character ID
 
         os.makedirs(folder_path, exist_ok=True)
         csv_file_path = os.path.join(
@@ -46,17 +45,16 @@ def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_c
             combined_df = pd.concat([existing_df, df], ignore_index=True)
             combined_df.drop_duplicates(
                 subset=['date'], keep='last', inplace=True)
-            if 'ID_Crypto' not in existing_df.columns:
+            if 'Crypto_Code' not in existing_df.columns:
                 # Assign the 3-character ID for existing entries without it
-                combined_df['ID_Crypto'] = crypto_ID
+                combined_df['Crypto_Code'] = crypto_ID
         except FileNotFoundError:
             combined_df = df
 
         # Ensure the order of columns as (price, date) before saving
-        combined_df = combined_df[['ID_Crypto', 'price', 'date']]
+        combined_df = combined_df[['Crypto_Code', 'price', 'date']]
 
         combined_df.to_csv(csv_file_path, index=False)
-        print(f"Daily market data for {crypto_ID} saved to {csv_file_path}")
 
         # Attempt to connect to your MySQL database
         try:
@@ -72,15 +70,15 @@ def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_c
 
                 # Iterate through the DataFrame rows
                 for _, row in df.iterrows():
-                    insert_query = """INSERT INTO daily_data (ID_Crypto, value, date)
+                    insert_query = """INSERT INTO daily_data (Crypto_Code, value, date)
                                       VALUES (%s, %s, %s)
                                       ON DUPLICATE KEY UPDATE value = VALUES(value);"""
-                    insert_values = (row['ID_Crypto'], row['price'], row['date'])
+                    insert_values = (row['Crypto_Code'], row['price'], row['date'])
 
                     db_cursor.execute(insert_query, insert_values)
                     connection.commit()
 
-                print(f"Market data for {crypto_ID} has been inserted into the database.")
+            print(f"Data for {crypto_ID} has been updated in {csv_file_path} and in the Database.")
 
         except Error as e:
             print(f"Failed to insert record into MySQL table: {e}")
@@ -89,10 +87,8 @@ def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_c
             if (connection.is_connected()):
                 db_cursor.close()
                 connection.close()
-                print("MySQL connection is closed.")
 
     else:
         print(f"Failed to fetch data for {crypto_ID}: {response.status_code}")
-
 # Example usage - for testing
 #fetch_and_save_crypto_daily_data("BTC", "bitcoin")

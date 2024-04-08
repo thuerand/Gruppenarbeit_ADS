@@ -44,8 +44,8 @@ def fetch_cryptonews(currencies):
                         published_at = parser.parse(entry['published_at']).strftime('%Y-%m-%d %H:%M:%S')
 
                         entry_data = {
-                            'ID': entry['id'],
-                            'ID_Crypto': currency,
+                            'ID_News': entry['id'],
+                            'Crypto_Code': currency,
                             'Kind': entry['kind'],
                             'Positive_Votes': entry['votes']['positive'],
                             'Negative_Votes': entry['votes']['negative'],
@@ -62,7 +62,7 @@ def fetch_cryptonews(currencies):
                         flattened_data.append(entry_data)
 
                         # Prepare SQL insert statement
-                        insert_query = """INSERT INTO crypto_news (crypto_id, ID_Crypto, Kind, Positive_Votes, Negative_Votes, Important_Votes, Liked_Votes, Disliked_Votes, LOL_Votes, Toxic_Votes, Saved, Comments, published_at, Domain)
+                        insert_query = """INSERT INTO crypto_news (Crypto_Code, ID_News, Kind, Positive_Votes, Negative_Votes, Important_Votes, Liked_Votes, Disliked_Votes, LOL_Votes, Toxic_Votes, Saved, Comments, published_at, Domain)
                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
                         insert_values = (currency, entry['id'], entry['kind'], entry['votes']['positive'], entry['votes']['negative'], 
                                          entry['votes']['important'], entry['votes']['liked'], entry['votes']['disliked'], 
@@ -71,7 +71,6 @@ def fetch_cryptonews(currencies):
 
                         db_cursor.execute(insert_query, insert_values)
                         connection.commit()
-                print("News data for {currency} has been inserted into the database.")
 
             except Error as e:
                 print(f"Failed to insert record into MySQL table: {e}")
@@ -80,21 +79,22 @@ def fetch_cryptonews(currencies):
                 if (connection.is_connected()):
                     db_cursor.close()
                     connection.close()
-                    print("MySQL connection is closed.")
 
             new_df = pd.DataFrame(flattened_data)
             try:
                 existing_df = pd.read_csv(csv_file_path)
-                updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID'], keep='first')
+                updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID_News'], keep='first')
             except FileNotFoundError:
-                updated_df = new_df.drop_duplicates(subset=['ID'], keep='first')
+                updated_df = new_df.drop_duplicates(subset=['ID_News'], keep='first')
 
-            updated_df.sort_values(by='ID', ascending=False, inplace=True)
+            updated_df.sort_values(by='ID_News', ascending=False, inplace=True)
             updated_df.to_csv(csv_file_path, index=False)
-            print(f"Data for {currency} has been updated in {csv_file_path}")
+            print(f"Data for {currency} has been updated in {csv_file_path} and in the Database.")
 
         else:
             print(f"Error retrieving data for {currency}: {response.status_code}")
+
+    
 
     central_df.to_csv(central_csv_path, index=False)
     print("Domain information from news has been updated.")

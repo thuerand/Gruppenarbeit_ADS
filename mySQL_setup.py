@@ -70,7 +70,7 @@ def create_mysql_tables():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS daily_data (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            ID_Crypto VARCHAR(10),
+            Crypto_Code VARCHAR(10),
             value DECIMAL(10, 2),
             date DATE
         )
@@ -79,8 +79,8 @@ def create_mysql_tables():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS crypto_news (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            crypto_id VARCHAR(10),
-            ID_Crypto INT,
+            Crypto_Code VARCHAR(10),
+            ID_News INT,
             Kind VARCHAR(10),
             Positive_Votes INT,
             Negative_Votes INT,
@@ -128,7 +128,7 @@ def wait_for_mysql_container_ready(host, user, password, database, max_attempts=
                 connection.close()
                 return True
         except Error as e:
-            print(f"Waiting for MySQL container to be ready: {e}")
+            print(f"Waiting for MySQL container to be ready. Attempt {attempt + 1}/{max_attempts}...")
             attempt += 1
             time.sleep(delay)
     print("MySQL container did not become ready in time.")
