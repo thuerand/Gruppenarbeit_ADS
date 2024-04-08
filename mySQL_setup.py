@@ -90,7 +90,7 @@ def create_mysql_tables():
         CREATE TABLE IF NOT EXISTS crypto_news (
             id INT AUTO_INCREMENT PRIMARY KEY,
             crypto_id VARCHAR(10),
-            ID_Cryptopanic INT,
+            ID_Crypto INT,
             Kind VARCHAR(10),
             Positive_Votes INT,
             Negative_Votes INT,
