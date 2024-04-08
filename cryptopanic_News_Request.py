@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 import mysql.connector
 from mysql.connector import Error
-from datetime import datetime
+from dateutil import parser
 
 def fetch_cryptonews(currencies):
     print("Fetching news data from cryptopanic.com...")
@@ -41,7 +41,7 @@ def fetch_cryptonews(currencies):
 
                     for entry in data['results']:
                         # Convert 'published_at' to MySQL datetime format
-                        published_at = datetime.strptime(entry['published_at'], "%Y-%m-%dT%H:%M:%S.%fZ").strftime("%Y-%m-%d %H:%M:%S")
+                        published_at = parser.parse(entry['published_at']).strftime('%Y-%m-%d %H:%M:%S')
 
                         entry_data = {
                             'ID_Cryptopanic': entry['id'],
