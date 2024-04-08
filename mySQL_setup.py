@@ -52,7 +52,7 @@ def run_mysql_container():
         print(f"Running new MySQL container with ID: {container.id}")
 
 # Example usage - for testing
-#run_mysql_container()
+# run_mysql_container()
 
 # Create mySQL tables
 
@@ -127,8 +127,9 @@ def wait_for_mysql_container_ready(host, user, password, database, max_attempts=
                 print("MySQL container is ready to accept connections.")
                 connection.close()
                 return True
-        except Error as e:
-            print(f"Waiting for MySQL container to be ready. Attempt {attempt + 1}/{max_attempts}...")
+        except Error:
+            print(
+                f"Waiting for MySQL container to be ready. Attempt {attempt + 1}/{max_attempts}...")
             attempt += 1
             time.sleep(delay)
     print("MySQL container did not become ready in time.")

@@ -13,7 +13,7 @@ from mysql.connector import Error
 
 
 def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_cryptocurrency_rate'):
-    
+
     # Setting start and end date for the data fetch
     end_date = datetime.now()
     # Fetching data for the last 15 days due to API tier limits
@@ -73,12 +73,14 @@ def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_c
                     insert_query = """INSERT INTO daily_data (Crypto_Code, value, date)
                                       VALUES (%s, %s, %s)
                                       ON DUPLICATE KEY UPDATE value = VALUES(value);"""
-                    insert_values = (row['Crypto_Code'], row['price'], row['date'])
+                    insert_values = (row['Crypto_Code'],
+                                     row['price'], row['date'])
 
                     db_cursor.execute(insert_query, insert_values)
                     connection.commit()
 
-            print(f"Data for {crypto_ID} has been updated in {csv_file_path} and in the Database.")
+            print(
+                f"Data for {crypto_ID} has been updated in {csv_file_path} and in the Database.")
 
         except Error as e:
             print(f"Failed to insert record into MySQL table: {e}")
@@ -91,4 +93,4 @@ def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_c
     else:
         print(f"Failed to fetch data for {crypto_ID}: {response.status_code}")
 # Example usage - for testing
-#fetch_and_save_crypto_daily_data("BTC", "bitcoin")
+# fetch_and_save_crypto_daily_data("BTC", "bitcoin")

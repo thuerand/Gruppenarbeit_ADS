@@ -13,13 +13,14 @@ from selenium.webdriver.chrome.options import Options
 import os
 import random
 
+
 def get_hq_from_newsagencies():
     # Read the data from the CSV file
     df = pd.read_csv('Data_cryptonews/HQ_newsagency.csv')
-    
+
     # Filter to find rows where 'hq_location' is NaN
     domains_to_lookup = df[pd.isna(df['hq_location'])]
-    
+
     # Only proceed if there are domains that need to be looked up
     if domains_to_lookup.empty:
         print("Every Domain already has an HQ location")
@@ -35,18 +36,22 @@ def get_hq_from_newsagencies():
         opts.add_argument("user-agent=" + random.choice(ua_list))
 
         # Initialize WebDriver
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=opts)
-        
+        driver = webdriver.Chrome(service=Service(
+            ChromeDriverManager().install()), options=opts)
+
         for index, row in domains_to_lookup.iterrows():
             domain = row['Domain']
-            
+
             try:
                 # Open the SimilarWeb website with the domain
-                driver.get(f"https://www.similarweb.com/website/{domain}/#overview")
-                WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/main/div/div/div[1]/section/div/div/div/div[5]/div/dl/div[4]/dd')))
-                hq_element = driver.find_element(By.XPATH, '/html/body/div[1]/div/main/div/div/div[1]/section/div/div/div/div[5]/div/dl/div[4]/dd')
+                driver.get(
+                    f"https://www.similarweb.com/website/{domain}/#overview")
+                WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+                    (By.XPATH, '/html/body/div[1]/div/main/div/div/div[1]/section/div/div/div/div[5]/div/dl/div[4]/dd')))
+                hq_element = driver.find_element(
+                    By.XPATH, '/html/body/div[1]/div/main/div/div/div[1]/section/div/div/div/div[5]/div/dl/div[4]/dd')
                 hq_location = hq_element.text.strip()
-                
+
                 # Update the DataFrame if the HQ location is found
                 if hq_location:
                     df.at[index, 'hq_location'] = hq_location
@@ -65,4 +70,4 @@ def get_hq_from_newsagencies():
         driver.quit()
 
 # Example usage - for testing
-#get_hq_from_newsagencies()
+# get_hq_from_newsagencies()
