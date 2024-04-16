@@ -120,8 +120,8 @@ def fetch_and_create_map():
             folium.Marker([lat, lon], popup=popup_text).add_to(map)
 
         # Save the map as an HTML file
-        map.save('hq_locations_map.html')
-        print("Map has been saved to 'hq_locations_map.html'.")
+        map.save('result/hq_locations_map.html')
+        print("Map has been saved to 'hq_locations_map.html' in the 'result' folder.")
 
         return map
 
@@ -131,4 +131,4 @@ def fetch_and_create_map():
         print(f"An error occurred: {e}")
 
 # Example usage
-fetch_and_create_map()
+#fetch_and_create_map()
