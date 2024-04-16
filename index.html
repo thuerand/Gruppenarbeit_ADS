@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #005288;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: #005288;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #content {
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ccc;
+        }
+        iframe {
+            width: 100%;
+            height: 500px; /* Adjust height as needed */
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showSection('map'); return false;">HQ Map</a></li>
+            <li><a href="#" onclick="showSection('other'); return false;">Other Section</a></li>
+        </ul>
+    </nav>
+    <div id="content">
+        <!-- Content will be loaded here based on selection -->
+    </div>
+
+    <script>
+        function showSection(section) {
+            var contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = ''; // Clear current content
+
+            if (section === 'map') {
+                // Assuming hq_locations_map.html is in the same directory
+                var iframe = document.createElement('iframe');
+                iframe.setAttribute('src', 'result/hq_locations_map.html');
+                contentDiv.appendChild(iframe);
+            } else if (section === 'Exploratory data analysis') {
+                contentDiv.innerHTML = '<p>Exploratory data analysis...</p>';
+            }
+        }
+    </script>
+</body>
+</html>

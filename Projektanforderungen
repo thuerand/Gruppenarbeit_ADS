@@ -1,0 +1,56 @@
+Mindestanforderung an die Projektarbeit (max. 9 Punkte):
+Das Projekt muss ein Projekt zum Thema Applied Data Science sein, d.h. auf den Inhalten des Moduls ADS aufbauen.
+Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum sind dies die folgenden:
+(1) Datenerhebung mittels Web Scraping UND Web API (muss Teil des Python Codes sein, einfache File-Downloads zählen nicht)
+    Web API:
+        - Abrufen von News: cryptopanic
+        - Abrufen von Marktdaten : coingecko
+        - Abrufen von Geodaten: opencagedata
+        - etc
+    WebScraping:
+        - Holen von HQ-Location der verschiedenen Domains: similaweb (einige Einträge wurden in der Zwischenzeit gelöscht..)
+
+(2) Datenaufbereitung (z.B. Entfernen NAs und Duplikate, Erstellen neuer Variablen, Anreicherung der Daten, ...)
+    Die Datenaufbereitung wird bei der Abfrage, Erstellung der CSVs oder beim Inserten in die DB gemacht:
+        - Entfernen NA (Wird bei der Erstellung der CSVs und DBs verzichtet, da sonst bei jeder Ausführung die Daten nochmals abgefragt werden)
+        - Erstellen der Variablen: Umformatierung der DateTime-Formate um ein Format zu haben (News <-> Marktdaten) und das mySQL das Format erkennt.
+        - Löschen oder Updaten bei Duplikaten (Duplikate bei Marktdaten werden gelöscht, da keine "Neuigkeiten; Duplikate bei News werden geupdatet, da Likes etc sich verändern können). Speziel bei erneutem Laufenlassen des Codes, wird in der MySQL-Tabelle auf Duplikate geprüft.
+        - Abspeichern der Variablen in einem csv
+        - Anreicherung der Erstabfragen (bspw. News-Domains mit Koordinaten)
+
+(3) Speichern der Daten in einer Database wie MySQL oder PostgreSQL sowie SQL Abfragen aus dieser (SQLite zählt nicht!!!)
+    Alle gefetchen Daten werden in mehreren MySQL Tabellen inserted und von dort verwendet.
+
+(4) Umfangreiche Explorative Datenanalyse (EDA)
+    
+(5) Verwendung eines ML Frameworks/Library (tensorflow/keras, sklearn oder im Kurs nicht betrachtete wie pytorch)
+
+(6) Erstellen von Modellvorhersagen
+
+(7) Evaluation der Modelle mit Hilfe geeigneter Modellgütemasse
+
+(8) Korrekte Interpretation der Modellergebnisse und Modellgütemasse
+
+(9) Bereitstellung des Materials (Daten, Jupyter Notebooks, ...) auf Moodle
+
+
+Zusatzpunkte für Projektarbeit, falls Folgendes erfüllt (max. 7 Punkte):
+(1) Kreativität der Umsetzung (kreativ ist alles, was in den Lektionen und Übungen nicht vorgegeben wurde)
+    Zeigen der Resultate in einem html-File (?)
+
+(2) Verwendung von Docker Containern (Docker Compose) für die Bearbeitung und Speicherung der Daten und die Modellierung
+
+(3) Integration und Visualisierung von geographischen Daten
+    Koordinaten von HQ-Locations werden gefetched und in einer Map aufgezeigt. Die Map ist als Output im Result-Ordner
+
+(4) Verwendung einer fortgeschrittenen Deep Learning Struktur/Technik (z.B.CNN, RNN, Transfer Learning, Transformers …)
+
+
+(5) Ermittlung von Modellierungshypothesen und Überprüfung von Modellierungsannahmen
+
+
+(6) Verwendung von im Unterricht behandelten NLP-Techniken
+
+
+(7) Verfügbarmachen des Pythoncodes / der Jupyter notebooks in einem (public) GitHub Repository
+    Ist bereits in einem Repo
