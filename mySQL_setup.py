@@ -12,6 +12,8 @@ from mysql.connector import Error
 def run_mysql_container():
     client = docker.from_env()
 
+    print ("Starting MySQL container")
+    
     # Check if the MySQL container is already running
     containers = client.containers.list(all=True)
     mysql_container = None

@@ -11,6 +11,8 @@ from cryptopanic_News_Request import fetch_cryptonews
 from coingecko_market_data import fetch_and_save_crypto_daily_data
 from similaweb_news_hq import get_hq_from_newsagencies
 
+print("Starting the application...")
+
 # Define the relevant cryptocurrencies for the project (limited due to the coingecko API limit)
 crypto_ids_full = {
     "BTC": "bitcoin",
@@ -28,7 +30,7 @@ run_mysql_container()
 
 # Wait for the MySQL container to be ready to accept connections
 if wait_for_mysql_container_ready("localhost", "myuser", "mypassword", "mydatabase"):
-    print("MySQL container is ready. Proceeding with table creation and data fetching.")
+    print("Proceeding with table creation and data fetching.")
 
     # Create MySQL tables
     create_mysql_tables()
