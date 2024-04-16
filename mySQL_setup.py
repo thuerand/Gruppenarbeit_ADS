@@ -74,7 +74,8 @@ def create_mysql_tables():
             id INT AUTO_INCREMENT PRIMARY KEY,
             Crypto_Code VARCHAR(10),
             value DECIMAL(10, 2),
-            date DATE
+            date DATE,
+            UNIQUE (Crypto_Code, date)
         )
     """)
     # Table creation for 'crypto_news'
@@ -94,7 +95,8 @@ def create_mysql_tables():
             Saved INT,
             Comments INT,
             published_at DATETIME,
-            Domain VARCHAR(100)
+            Domain VARCHAR(100),
+            UNIQUE (ID_News, Crypto_Code)
         )
     """)
 
@@ -102,8 +104,10 @@ def create_mysql_tables():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS HQ_newagency (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            Domain VARCHAR(100),
-            hq_location VARCHAR(100)
+            Domain VARCHAR(100) UNIQUE,
+            hq_location VARCHAR(100),
+            latitude DECIMAL(12, 8) NULL,
+            longitude DECIMAL(12, 8) NULL
         )
     """)
 
@@ -112,7 +116,7 @@ def create_mysql_tables():
     print("MySQL tables created successfully.")
 
 # Example usage - for testing
-# create_mysql_tables()
+#create_mysql_tables()
 
 # Wait for the MySQL container to be ready to accept connections
 # Sometimes the creation of the MySQL container takes a while. This function waits for the container to be ready to accept connections.

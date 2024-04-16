@@ -12,17 +12,18 @@ def get_news_record():
             cursor = connection.cursor()
             
             # Define the SELECT statement query
-            # Assuming "19337058" is the ID and stored in a column named 'ID'
-            query = "SELECT * FROM crypto_news WHERE ID_news = %s AND Crypto_Code = %s"
-            cursor.execute(query, ('19337058','USDT'))
+            query = "SELECT * FROM HQ_newagency;"
+            cursor.execute(query)
             
-            # Fetch the result
-            record = cursor.fetchall()
+            # Fetch the results
+            records = cursor.fetchall()
             
-            if record:
-                print("Found record:", record)
+            if records:
+                print("Found records:")
+                for record in records:
+                    print(record)
             else:
-                print("Record not found.")
+                print("No records found.")
                 
     except Error as e:
         print("Error while connecting to MySQL", e)

@@ -10,6 +10,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+import mysql.connector
+from mysql.connector import Error
 import os
 import random
 
@@ -69,5 +71,34 @@ def get_hq_from_newsagencies():
         # Close the WebDriver
         driver.quit()
 
+    # Connect to MySQL and insert the HQ information
+    try:
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="myuser",
+            password="mypassword",
+            database="mydatabase"
+        )
+        cursor = connection.cursor()
+
+        for index, row in df.iterrows():
+            sql = """
+                INSERT INTO HQ_newagency (Domain, hq_location)
+                VALUES (%s, %s)
+                ON DUPLICATE KEY UPDATE hq_location = VALUES(hq_location);
+            """
+            cursor.execute(sql, (row['Domain'], row['hq_location']))
+            connection.commit()
+        
+        print("HQ information has been inserted into the database.")
+
+    except Error as e:
+        print(f"Failed to insert record into MySQL table: {e}")
+
+    finally:
+        if connection and connection.is_connected():
+            cursor.close()
+            connection.close()
+
 # Example usage - for testing
-# get_hq_from_newsagencies()
+#get_hq_from_newsagencies()

@@ -10,6 +10,7 @@ from mySQL_setup import run_mysql_container, create_mysql_tables, wait_for_mysql
 from cryptopanic_News_Request import fetch_cryptonews
 from coingecko_market_data import fetch_and_save_crypto_daily_data
 from similaweb_news_hq import get_hq_from_newsagencies
+from HQ_visualized import update_database_and_csv_with_coordinates, fetch_and_create_map
 
 print("Starting the application...")
 
@@ -48,4 +49,8 @@ if wait_for_mysql_container_ready("localhost", "myuser", "mypassword", "mydataba
 else:
     print("Failed to connect to MySQL server after multiple attempts.")
 
+#Get coordinates for the news agencies
+update_database_and_csv_with_coordinates()
 
+#Create an interactive map using Folium
+fetch_and_create_map()

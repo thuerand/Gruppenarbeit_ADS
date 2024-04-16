@@ -1,25 +1,25 @@
-Domain,hq_location
-u.today,"United States, New York, New York"
-newsbtc.com,"United Kingdom, London"
-coinpaprika.com,"Poland, Poznan"
-cryptoslate.com,"United States, Washington, Seattle"
-ambcrypto.com,"India, Bengaluru"
-dailyhodl.com,"United States, California, Los Angeles"
-cointelegraph.com,"United States, New York, New York"
-en.bitcoinsistemi.com,- -
-bitcoinist.com,"Hungary, Budapest"
-cryptobriefing.com,"United States, Missouri, Brandsville"
-coindesk.com,"United States, New York, New York"
-cryptoglobe.com,"United Kingdom, London"
-coinjournal.net,"United Kingdom, London"
-coinedition.com,United Arab Emirates
-cryptointelligence.co.uk,"United Kingdom, London"
-decrypt.co,"United States, New York, New York"
-zycrypto.com,"United Kingdom, London"
-cryptopolitan.com,"United Kingdom, London"
-beincrypto.com,"United Kingdom, London"
-cryptopotato.com,"Bulgaria, Sofia"
-finbold.com,"United Kingdom, Charing"
-dailycoin.com,"Switzerland, Zug"
-theblock.co,"United States, New York, New York"
-blockworks.co,United Kingdom
+Domain,hq_location,latitude,longitude
+u.today,"United States, New York, New York",40.7127281,-74.0060152
+newsbtc.com,"United Kingdom, London",51.5074456,-0.1277653
+coinpaprika.com,"Poland, Poznan",52.4082663,16.9335199
+cryptoslate.com,"United States, Washington, Seattle",47.6038321,-122.330062
+ambcrypto.com,"India, Bengaluru",12.9767936,77.590082
+dailyhodl.com,"United States, California, Los Angeles",34.0536909,-118.242766
+cointelegraph.com,"United States, New York, New York",40.7127281,-74.0060152
+en.bitcoinsistemi.com,- -,,
+bitcoinist.com,"Hungary, Budapest",47.4978789,19.0402383
+cryptobriefing.com,"United States, Missouri, Brandsville",36.6503384,-91.690145
+coindesk.com,"United States, New York, New York",40.7127281,-74.0060152
+cryptoglobe.com,"United Kingdom, London",51.5074456,-0.1277653
+coinjournal.net,"United Kingdom, London",51.5074456,-0.1277653
+coinedition.com,United Arab Emirates,24.0002488,53.9994829
+cryptointelligence.co.uk,"United Kingdom, London",51.5074456,-0.1277653
+decrypt.co,"United States, New York, New York",40.7127281,-74.0060152
+zycrypto.com,"United Kingdom, London",51.5074456,-0.1277653
+cryptopolitan.com,"United Kingdom, London",51.5074456,-0.1277653
+beincrypto.com,"United Kingdom, London",51.5074456,-0.1277653
+cryptopotato.com,"Bulgaria, Sofia",42.6977028,23.3217359
+finbold.com,"United Kingdom, Charing",51.2142039,0.7886033
+dailycoin.com,"Switzerland, Zug",47.1486137,8.5539378
+theblock.co,"United States, New York, New York",40.7127281,-74.0060152
+blockworks.co,United Kingdom,54.7023545,-3.2765753
