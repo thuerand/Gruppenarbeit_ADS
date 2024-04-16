@@ -70,9 +70,10 @@ def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_c
 
                 # Iterate through the DataFrame rows
                 for _, row in combined_df.iterrows():
-                    insert_query = """INSERT INTO daily_data (Crypto_Code, value, date)
-                                      VALUES (%s, %s, %s)
-                                      ON DUPLICATE KEY UPDATE value = VALUES(value);"""
+                    insert_query = """
+                        INSERT IGNORE INTO daily_data (Crypto_Code, value, date)
+                        VALUES (%s, %s, %s);
+                    """
                     insert_values = (row['Crypto_Code'],
                                      row['price'], row['date'])
 
