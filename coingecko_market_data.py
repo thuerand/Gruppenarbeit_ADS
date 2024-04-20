@@ -94,4 +94,4 @@ def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_c
     else:
         print(f"Failed to fetch data for {crypto_ID}: {response.status_code}")
 # Example usage - for testing
-# fetch_and_save_crypto_daily_data("BTC", "bitcoin")
+#fetch_and_save_crypto_daily_data("BTC", "bitcoin")

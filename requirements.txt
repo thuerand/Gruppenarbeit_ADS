@@ -5,9 +5,9 @@ pandas==2.2.0
 selenium==4.17.2
 docker==7.0.0
 mysql-connector-python==8.3.0
-python-dateutil==2.9.0.post0
-TIME-python==0.0.17
-folium==0.15.1
+python-dateutil==2.9.0.post0 #Different to ASD-Standard
+TIME-python==0.0.17 #Different to ASD-Standard
+folium==0.15.1 #Different to ASD-Standard
 #Thoughts
 #import os --> where does it come from?
 
@@ -54,4 +54,3 @@ pycodestyle==2.11.1
 pylint==3.0.3
 pyarrow==15.0.0
 prettytable==3.9.0
-geopandas==0.14.3

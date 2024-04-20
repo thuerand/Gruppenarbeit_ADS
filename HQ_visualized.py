@@ -144,4 +144,4 @@ def fetch_and_create_map():
         print(f"An error occurred: {e}")
 
 # Example usage
-fetch_and_create_map()
+#fetch_and_create_map()
