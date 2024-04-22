@@ -93,7 +93,7 @@ def analyze_and_export_data(crypto_code, crypto_name):
         with open(file_path, 'w') as file:
             file.write(html_content)
 
-        print(f"Analysis for {crypto_name} saved to {file_path}")
+        print(f"Analysis for {crypto_name} saved in the 'results' folder")
 
     except mysql.connector.Error as e:
         print(f"Error connecting to MySQL for {crypto_name}: {e}")

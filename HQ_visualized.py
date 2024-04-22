@@ -67,7 +67,6 @@ def update_database_and_csv_with_coordinates():
                 update_query = """UPDATE HQ_newagency SET latitude = %s, longitude = %s WHERE Domain = %s"""
                 cursor.execute(update_query, (latitude, longitude, row['Domain']))
                 connection.commit()
-                print(f"Updated {row['Domain']} with lat: {latitude}, lng: {longitude}")
 
         df.to_csv(csv_file_path, index=False)
         print("CSV file and database have been updated with new coordinates.")

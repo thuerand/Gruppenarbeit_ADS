@@ -38,10 +38,6 @@ def run_mysql_container():
             "MYSQL_PASSWORD": "mypassword"
         }
 
-        # Pull the MySQL image
-        image = client.images.pull("mysql:latest")
-        print(f"Pulled {image.tags[0]} successfully.")
-
         # Run the MySQL container
         container = client.containers.run(
             "mysql:latest",
