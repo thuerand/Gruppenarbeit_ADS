@@ -22,7 +22,8 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
     Alle gefetchen Daten werden in mehreren MySQL Tabellen inserted und von dort verwendet.
 
 (4) Umfangreiche Explorative Datenanalyse (EDA)
-    
+    Verschiedene Werte für die Marktdaten wurden ausgelesen und werden im EDA auf dem Index.hmtl angezeigt
+
 (5) Verwendung eines ML Frameworks/Library (tensorflow/keras, sklearn oder im Kurs nicht betrachtete wie pytorch)
 
 (6) Erstellen von Modellvorhersagen
@@ -36,15 +37,16 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
 
 Zusatzpunkte für Projektarbeit, falls Folgendes erfüllt (max. 7 Punkte):
 (1) Kreativität der Umsetzung (kreativ ist alles, was in den Lektionen und Übungen nicht vorgegeben wurde)
-    Zeigen der Resultate in einem html-File (?)
+    Zeigen der Resultate in einem html-File
 
 (2) Verwendung von Docker Containern (Docker Compose) für die Bearbeitung und Speicherung der Daten und die Modellierung
+    Ja(?), Bearbeitung und temporäres Speichern der Daten werden in mySQL gemacht. CSVs sind lediglich zum endgültigen Spechern gedacht.
 
 (3) Integration und Visualisierung von geographischen Daten
     Koordinaten von HQ-Locations werden gefetched und in einer Map aufgezeigt. Die Map ist als Output im Result-Ordner
 
 (4) Verwendung einer fortgeschrittenen Deep Learning Struktur/Technik (z.B.CNN, RNN, Transfer Learning, Transformers …)
-
+    
 
 (5) Ermittlung von Modellierungshypothesen und Überprüfung von Modellierungsannahmen
 
