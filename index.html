@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
-            background: #f4f4f4;
-            color: #333;
+            display: flex;
+            flex-direction: column;
         }
         header {
             background: #005288;
@@ -21,37 +21,57 @@
         nav ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
+            background: #f1f1f1;
+            overflow: hidden;
         }
         nav ul li {
             display: inline;
-            margin-right: 10px;
         }
-        nav ul li a {
+        nav ul li a, nav ul li select {
             color: #005288;
             text-decoration: none;
-            font-weight: bold;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+        #cryptoSubMenu {
+            padding-left: 20px;
+            background: #e0e0e0; /* Lighter background for submenu */
+            display: none; /* Hidden by default */
+        }
+        #cryptoSubMenu li {
+            display: block; /* List items displayed as block for vertical list */
         }
         #content {
-            margin: 20px;
+            flex: 1;  /* Takes up the remaining space */
+            overflow: auto; /* Adds scroll to content div only if needed */
             padding: 20px;
             background: white;
-            border: 1px solid #ccc;
         }
         iframe {
             width: 100%;
-            height: 500px; /* Adjust height as needed */
+            height: 100%;  /* Adjust iframe height to take full available space in content div */
             border: none;
         }
     </style>
 </head>
-<body>
+<body onload="showSection('map');">
     <header>
         <h1>Dashboard</h1>
     </header>
     <nav>
         <ul>
             <li><a href="#" onclick="showSection('map'); return false;">HQ Map</a></li>
+            <li><a href="#" onclick="showSection('Market Analysis'); return false;">Market Analysis - EDA</a></li>
             <li><a href="#" onclick="showSection('other'); return false;">Other Section</a></li>
+        </ul>
+        <!-- Submenu for cryptocurrency analysis -->
+        <ul id="cryptoSubMenu">
+            <li><a href="#" onclick="changeCryptoAnalysis('BTC_analysis.html'); return false;">Bitcoin</a></li>
+            <li><a href="#" onclick="changeCryptoAnalysis('BNB_analysis.html'); return false;">BNB</a></li>
+            <li><a href="#" onclick="changeCryptoAnalysis('ETH_analysis.html'); return false;">Ethereum</a></li>
+            <li><a href="#" onclick="changeCryptoAnalysis('SOL_analysis.html'); return false;">Solana</a></li>
+            <li><a href="#" onclick="changeCryptoAnalysis('USDT_analysis.html'); return false;">Tether</a></li>
         </ul>
     </nav>
     <div id="content">
@@ -61,16 +81,30 @@
     <script>
         function showSection(section) {
             var contentDiv = document.getElementById('content');
+            var cryptoSubMenu = document.getElementById('cryptoSubMenu');
             contentDiv.innerHTML = ''; // Clear current content
+            var iframe = document.createElement('iframe');
 
             if (section === 'map') {
-                // Assuming hq_locations_map.html is in the same directory
-                var iframe = document.createElement('iframe');
-                iframe.setAttribute('src', 'result/hq_locations_map.html');
+                cryptoSubMenu.style.display = 'none';
+                iframe.setAttribute('src', 'results/hq_locations_map.html');
                 contentDiv.appendChild(iframe);
-            } else if (section === 'Exploratory data analysis') {
-                contentDiv.innerHTML = '<p>Exploratory data analysis...</p>';
+            } else if (section === 'Market Analysis') {
+                cryptoSubMenu.style.display = 'block'; // Show the crypto submenu
+                iframe.setAttribute('src', 'results/BTC_analysis.html'); // Default to BTC analysis
+                contentDiv.appendChild(iframe);
+            } else if (section === 'other') {
+                cryptoSubMenu.style.display = 'none';
+                // Add other content
             }
+        }
+
+        function changeCryptoAnalysis(analysisFile) {
+            var contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = ''; // Clear current content
+            var iframe = document.createElement('iframe');
+            iframe.setAttribute('src', 'results/' + analysisFile);
+            contentDiv.appendChild(iframe);
         }
     </script>
 </body>

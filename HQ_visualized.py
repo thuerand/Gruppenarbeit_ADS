@@ -33,10 +33,8 @@ def fetch_coordinates(api_key, address):
 
 
 def update_database_and_csv_with_coordinates():
-    # Update both the database and CSV file with geographic coordinates."""
     csv_file_path = 'Data_cryptonews/HQ_newsagency.csv'
-
-    df = pd.read_csv(csv_file_path)  # Load the CSV file into a DataFrame
+    df = pd.read_csv(csv_file_path)
 
     try:
         connection = mysql.connector.connect(
@@ -46,41 +44,33 @@ def update_database_and_csv_with_coordinates():
             database='mydatabase'
         )
         cursor = connection.cursor()
-        api_key = '77ace187bc104bcfa94efa947fd84326'
+        api_key = 'your_api_key'
 
-        # Select domains that are missing coordinates
-        cursor.execute(
-            "SELECT Domain, hq_location FROM HQ_newagency WHERE latitude IS NULL OR longitude IS NULL")
-        rows = cursor.fetchall()
-
-        # Mapping domains to hq_location for API calls
-        domain_to_hq = {row[0]: row[1] for row in rows}
-
-        # Iterate over DataFrame rows that need updates
         for index, row in df.iterrows():
-            if row['Domain'] in domain_to_hq:
-                if pd.isna(row['latitude']) or pd.isna(row['longitude']):
-                    latitude, longitude = fetch_coordinates(
-                        api_key, domain_to_hq[row['Domain']])
-                    if latitude is not None and longitude is not None:
-                        df.at[index, 'latitude'] = latitude
-                        df.at[index, 'longitude'] = longitude
-                    else:
-                        df.at[index, 'latitude'] = np.nan
-                        df.at[index, 'longitude'] = np.nan
-                        latitude, longitude = None, None  # Use None for SQL NULL
+            # Only fetch coordinates if they are NaN in the DataFrame
+            if pd.isna(row['latitude']) or pd.isna(row['longitude']):
+                latitude, longitude = fetch_coordinates(api_key, row['hq_location'])
+                if latitude is not None and longitude is not None:
+                    df.at[index, 'latitude'] = latitude
+                    df.at[index, 'longitude'] = longitude
+                else:
+                    df.at[index, 'latitude'] = np.nan
+                    df.at[index, 'longitude'] = np.nan
+                    continue  # Skip updating this row in the database if coordinates are None
 
-                    # Update the database
-                    update_query = """UPDATE HQ_newagency SET latitude = %s, longitude = %s WHERE Domain = %s"""
-                    cursor.execute(
-                        update_query, (latitude, longitude, row['Domain']))
-                    connection.commit()
-                    print(
-                        f"Updated {row['Domain']} with lat: {latitude}, lng: {longitude}")
+            # Ensure latitude and longitude are either float or None (SQL NULL)
+            latitude = float(row['latitude']) if not pd.isna(row['latitude']) else None
+            longitude = float(row['longitude']) if not pd.isna(row['longitude']) else None
 
-        # Save the updated DataFrame back to the CSV
+            # Update the database only if latitude and longitude are not None
+            if latitude is not None and longitude is not None:
+                update_query = """UPDATE HQ_newagency SET latitude = %s, longitude = %s WHERE Domain = %s"""
+                cursor.execute(update_query, (latitude, longitude, row['Domain']))
+                connection.commit()
+                print(f"Updated {row['Domain']} with lat: {latitude}, lng: {longitude}")
+
         df.to_csv(csv_file_path, index=False)
-        print("CSV file has been updated with new coordinates.")
+        print("CSV file and database have been updated with new coordinates.")
 
     except Error as e:
         print("Error while connecting to MySQL", e)
@@ -91,7 +81,8 @@ def update_database_and_csv_with_coordinates():
             print("MySQL connection is closed")
 
 # Example usage
-# update_database_and_csv_with_coordinates()
+#update_database_and_csv_with_coordinates()
+
 
 # Function to fetch data from the MySQL database and create an interactive map using Folium
 
@@ -104,6 +95,8 @@ def fetch_and_create_map():
             host='localhost', user='myuser', password='mypassword', database='mydatabase')
         query = "SELECT Domain, hq_location, latitude, longitude FROM HQ_newagency WHERE latitude IS NOT NULL AND longitude IS NOT NULL"
         data = pd.read_sql(query, conn)
+
+
 
         # Ensure the connection is closed after fetching the data
         conn.close()
@@ -133,7 +126,7 @@ def fetch_and_create_map():
             folium.Marker([lat, lon], popup=popup).add_to(map)
 
         # Save the map as an HTML file
-        map.save('result/hq_locations_map.html')
+        map.save('results/hq_locations_map.html')
         print("Map has been saved to 'hq_locations_map.html' in the 'result' folder.")
 
         return map
@@ -142,6 +135,6 @@ def fetch_and_create_map():
         print(f"Error connecting to MySQL: {e}")
     except Exception as e:
         print(f"An error occurred: {e}")
-
+    
 # Example usage
 #fetch_and_create_map()

@@ -74,8 +74,8 @@ def fetch_and_save_crypto_daily_data(crypto_ID, crypto_name, folder_path='data_c
                         INSERT IGNORE INTO daily_data (Crypto_Code, value, date)
                         VALUES (%s, %s, %s);
                     """
-                    insert_values = (row['Crypto_Code'],
-                                     row['price'], row['date'])
+                    insert_values = (
+                        row['Crypto_Code'], float(row['price']), row['date'])
 
                     db_cursor.execute(insert_query, insert_values)
                     connection.commit()

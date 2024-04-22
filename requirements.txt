@@ -8,6 +8,7 @@ mysql-connector-python==8.3.0
 python-dateutil==2.9.0.post0 #Different to ASD-Standard
 TIME-python==0.0.17 #Different to ASD-Standard
 folium==0.15.1 #Different to ASD-Standard
+scipy==1.13.0 #Different to ASD-Standard
 #Thoughts
 #import os --> where does it come from?
 

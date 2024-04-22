@@ -4,55 +4,61 @@ import matplotlib.pyplot as plt
 from scipy.stats import mode
 from io import BytesIO
 import base64
+import os
 
-# Function to convert plot to HTML image tag
 def plot_to_html_img(figure, plot_title):
-    # Save plot to a bytes buffer
+    """Converts a matplotlib figure to an HTML image."""
     buf = BytesIO()
     figure.savefig(buf, format='png', bbox_inches='tight')
     buf.seek(0)
-    # Encode the image in base64 to embed in HTML
     image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
     buf.close()
-    # Create HTML image tag with base64 encoded image
     return f'<h2>{plot_title}</h2><img src="data:image/png;base64,{image_base64}"/>'
 
-def fetch_and_analyze_data():
+def analyze_and_export_data(crypto_code, crypto_name):
+    """Fetches the market data for a given cryptocurrency, analyzes it, and exports the analysis to an HTML file."""
     try:
-        # Connect to the MySQL database
         connection = mysql.connector.connect(
             host='localhost',
             user='myuser',
             password='mypassword',
             database='mydatabase'
         )
-        # Fetch the data
-        df = pd.read_sql("SELECT Crypto_Code, value AS Price, date FROM daily_data ORDER BY date", connection)
-        
-        if df.empty:
-            return "No data available for analysis."
 
-        # Statistics
+        # Fetch the data specific to the cryptocurrency
+        query = f"SELECT value AS Price, date FROM daily_data WHERE Crypto_Code = '{crypto_code}' ORDER BY date"
+        df = pd.read_sql(query, connection)
+        connection.close()
+
+        if df.empty:
+            print(f"No data available for {crypto_name}.")
+            return
+
+        # Calculate statistics
         mean_price = df['Price'].mean()
         median_price = df['Price'].median()
-        mode_price = mode(df['Price']).mode[0]
 
-        # Create plots
+        # Create a plot for price trends
         plt.figure(figsize=(10, 5))
-        plt.plot(df['date'], df['Price'], label='Price')
+        plt.plot(df['date'], df['Price'], label='Price', color='blue')
+        plt.title(f'Price Trends for {crypto_name}')
         plt.xlabel('Date')
-        plt.ylabel('Price')
-        plt.title('Price Trends')
+        plt.ylabel('Price (USD)')
+        plt.grid(True)
         plt.legend()
-        price_trend_plot = plt.gcf()  # Get the current figure
+        price_trend_plot = plt.gcf()
+        plt.close()
 
+        # Create a plot for rolling standard deviation to show volatility
         plt.figure(figsize=(10, 5))
         plt.plot(df['date'], df['Price'].rolling(window=7).std(), label='Rolling Std Dev (7 days)', color='red')
+        plt.title(f'Price Volatility for {crypto_name}')
         plt.xlabel('Date')
         plt.ylabel('Standard Deviation')
-        plt.title('Price Volatility')
+        plt.grid(True)
         plt.legend()
-        volatility_plot = plt.gcf()  # Get the current figure
+        volatility_plot = plt.gcf()
+        plt.close()
 
         # Convert plots to HTML images
         price_trend_html = plot_to_html_img(price_trend_plot, 'Price Trends Over Time')
@@ -62,35 +68,34 @@ def fetch_and_analyze_data():
         html_content = f"""
         <html>
         <head>
-            <title>Crypto Market Analysis Report</title>
+            <title>{crypto_name} Market Analysis</title>
             <style>
-                body {{ font-family: Arial, sans-serif; margin: 20px; }}
-                h1 {{ color: #333; }}
-                img {{ display: block; margin: 20px 0; max-width: 100%; }}
+                body {{ font-family: Arial; }}
+                img {{ width: 50%; height: auto; }}
             </style>
         </head>
         <body>
-            <h1>Crypto Market Analysis Report</h1>
+            <h1>Market Analysis for {crypto_name}</h1>
             <p><strong>Mean Price:</strong> {mean_price:.2f}</p>
             <p><strong>Median Price:</strong> {median_price:.2f}</p>
-            <p><strong>Mode Price:</strong> {mode_price:.2f}</p>
             {price_trend_html}
             {volatility_html}
         </body>
         </html>
         """
 
-        # Write the HTML content to a file
-        with open('crypto_market_analysis_report.html', 'w') as file:
+        # Ensure the results directory exists
+        results_dir = 'results'
+        os.makedirs(results_dir, exist_ok=True)
+
+        # Save HTML to a file
+        file_path = os.path.join(results_dir, f"{crypto_code}_analysis.html")
+        with open(file_path, 'w') as file:
             file.write(html_content)
 
-        return "Report generated successfully. Open 'crypto_market_analysis_report.html' to view it."
-        
+        print(f"Analysis for {crypto_name} saved to {file_path}")
+
     except mysql.connector.Error as e:
-        return f"Error connecting to MySQL: {e}"
-    finally:
-        if connection.is_connected():
-            connection.close()
+        print(f"Error connecting to MySQL for {crypto_name}: {e}")
 
-
-# result = fetch_and_analyze_data()
+# This function can now be called from app.py to analyze and export data for each cryptocurrency in your list.

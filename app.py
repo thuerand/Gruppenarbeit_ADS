@@ -11,7 +11,7 @@ from cryptopanic_News_Request import fetch_cryptonews
 from coingecko_market_data import fetch_and_save_crypto_daily_data
 from similaweb_news_hq import get_hq_from_newsagencies
 from HQ_visualized import update_database_and_csv_with_coordinates, fetch_and_create_map
-from eda_marketdata import fetch_and_analyze_data
+from eda_marketdata import analyze_and_export_data
 
 print("Starting the application...")
 
@@ -57,4 +57,5 @@ update_database_and_csv_with_coordinates()
 fetch_and_create_map()
 
 #EDA of marketdata
-fetch_and_analyze_data()
+for crypto_code, crypto_name in crypto_ids_full.items():
+    analyze_and_export_data(crypto_code, crypto_name)
