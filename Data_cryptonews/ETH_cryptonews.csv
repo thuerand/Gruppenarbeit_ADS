@@ -1,21 +1,24 @@
 ID_News,Crypto_Code,Kind,Title,Positive_Votes,Negative_Votes,Important_Votes,Liked_Votes,Disliked_Votes,LOL_Votes,Toxic_Votes,Saved,Comments,published_at,Domain
-19445206,ETH,news,,9,0,7,5,0,0,0,2,0,2024-04-29 16:22:58,cryptoglobe.com
-19444562,ETH,news,,6,3,4,4,2,3,0,2,0,2024-04-29 13:17:01,cryptoslate.com
-19442227,ETH,news,,7,0,7,7,0,0,0,6,0,2024-04-28 09:41:59,coinpaprika.com
-19441479,ETH,news,,11,0,8,8,0,1,0,2,0,2024-04-27 16:18:19,finbold.com
-19441366,ETH,news,,18,0,13,14,0,1,0,1,0,2024-04-27 15:03:56,cryptopolitan.com
-19440765,ETH,news,,22,1,19,17,1,2,0,6,0,2024-04-27 07:45:22,coinpaprika.com
-19440489,ETH,news,,12,0,7,11,0,1,0,2,0,2024-04-27 01:11:51,cryptobriefing.com
-19439604,ETH,news,,5,5,2,3,6,4,0,1,0,2024-04-26 15:49:56,coinspeaker.com
-19438470,ETH,news,,1,6,1,1,7,4,0,2,10,2024-04-26 09:25:40,coinspeaker.com
-19437373,ETH,news,,12,0,9,12,0,1,0,1,1,2024-04-25 22:39:03,cryptopolitan.com
-19432504,ETH,news,,2,4,0,1,4,1,0,1,0,2024-04-24 13:00:19,newsbtc.com
-19432442,ETH,news,,7,3,3,4,4,5,0,0,0,2024-04-24 12:42:04,cryptopotato.com
-19431655,ETH,news,,7,6,2,5,4,4,0,2,0,2024-04-24 08:05:11,beincrypto.com
-19424022,ETH,news,,5,2,1,2,2,2,0,1,0,2024-04-21 14:40:28,decrypt.co
-19423684,ETH,news,,9,0,5,6,0,1,0,1,1,2024-04-21 11:00:38,ambcrypto.com
-19423140,ETH,news,,6,0,3,4,0,0,0,0,0,2024-04-20 20:20:22,cryptopotato.com
-19417746,ETH,news,,4,2,1,2,1,2,0,1,10,2024-04-18 16:00:41,ambcrypto.com
+19458456,ETH,news,"Solana to join Bitcoin and Ethereum as top crypto assets, $1.6 trillion asset manager predicts",8,3,2,5,2,2,0,1,2,2024-05-03 18:21:55,cryptobriefing.com
+19450349,ETH,news,Cardano Whale Signal Historically Correlated With Price Reversals Flashes Green: Santiment,11,6,5,10,6,5,0,1,1,2024-05-01 09:15:58,dailyhodl.com
+19450201,ETH,news,"Bitcoin Sinks Below $58K, Crypto Market Drops 9% in Run-Up to Fed Decision",5,9,7,4,2,0,0,0,1,2024-05-01 08:22:29,coindesk.com
+19445206,ETH,news,The New Hong Kong-based Spot Bitcoin and Spot Ethereum ETFs Being Launched on April 30: All You Need to Know,14,0,10,10,0,0,0,3,0,2024-04-29 16:22:58,cryptoglobe.com
+19444562,ETH,news,"Grayscale’s outflows slow as investor interest in altcoins like Solana, Polkadot rises",6,3,4,4,3,4,0,2,0,2024-04-29 13:17:01,cryptoslate.com
+19442227,ETH,news,Franklin Templeton's Ethereum ETF Listing Raises Hopes for SEC Approval,7,0,7,7,0,0,0,6,0,2024-04-28 09:41:59,coinpaprika.com
+19441479,ETH,news,ETH price prediction as DTCC lists finance giant’s Ethereum spot ETF,11,0,8,8,0,1,0,2,0,2024-04-27 16:18:19,finbold.com
+19441366,ETH,news,Franklin Templeton lists its spot Ethereum ETF on DTCC,18,0,13,14,0,1,0,1,0,2024-04-27 15:03:56,cryptopolitan.com
+19440765,ETH,news,Buterin Defends Ethereum's Shift from PoW to PoS,22,1,19,17,1,2,0,6,0,2024-04-27 07:45:22,coinpaprika.com
+19440489,ETH,news,Franklin Templeton’s Ethereum spot ETF listed on DTCC,12,0,7,11,0,1,0,2,0,2024-04-27 01:11:51,cryptobriefing.com
+19439604,ETH,news,Here Are 3 Major Recent Cardano (ADA) Upgrades to Know,5,5,2,3,6,4,0,1,0,2024-04-26 15:49:56,coinspeaker.com
+19438470,ETH,news,Institutional Investors Flock to Solana (SOL) Ahead of Anticipated Bull Run,1,6,1,1,7,4,0,2,10,2024-04-26 09:25:40,coinspeaker.com
+19437373,ETH,news,ConsenSys sues SEC and demands ETH be classified as non-security,12,0,9,12,0,1,0,1,1,2024-04-25 22:39:03,cryptopolitan.com
+19432504,ETH,news,Solana Market Cap Skyrockets $11 Billion As Price Jumps 17% – Details,2,4,0,1,4,1,0,1,0,2024-04-24 13:00:19,newsbtc.com
+19432442,ETH,news,Cardano (ADA) and Polkadot (DOT) Outperform Ethereum (ETH) on This Front: Details,7,3,3,4,4,5,0,0,0,2024-04-24 12:42:04,cryptopotato.com
+19431655,ETH,news,New Solana Network Update Scheduled for Late May,7,6,2,5,4,4,0,2,0,2024-04-24 08:05:11,beincrypto.com
+19424022,ETH,news,"Solana, Ethereum Meme Coin Prices Blast Off as Bitcoin Stays Steady After Halving",5,2,1,2,2,2,0,1,0,2024-04-21 14:40:28,decrypt.co
+19423684,ETH,news,Ethereum ETFs may be coming soon – THIS is a huge sign,9,0,5,6,0,1,0,1,1,2024-04-21 11:00:38,ambcrypto.com
+19423140,ETH,news,EY Launches Ethereum-Based OpsChain Contract Manager for Business Contracts,6,0,3,4,0,0,0,0,0,2024-04-20 20:20:22,cryptopotato.com
+19417746,ETH,news,Solana vs Ethereum again: ‘Small blocker argument’ returns,4,2,1,2,1,2,0,1,10,2024-04-18 16:00:41,ambcrypto.com
 19416483,ETH,news,,8,0,6,5,0,3,0,1,0,2024-04-18 09:30:49,bitcoinist.com
 19412872,ETH,news,,1,5,1,2,3,7,0,1,10,2024-04-17 06:49:39,newsbtc.com
 19412047,ETH,news,,6,0,2,6,0,0,0,0,0,2024-04-16 21:04:02,decrypt.co
