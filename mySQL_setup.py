@@ -81,6 +81,7 @@ def create_mysql_tables():
             Crypto_Code VARCHAR(10),
             ID_News INT,
             Kind VARCHAR(10),
+            Title VARCHAR(1000),
             Positive_Votes INT,
             Negative_Votes INT,
             Important_Votes INT,

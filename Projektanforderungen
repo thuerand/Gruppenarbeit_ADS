@@ -19,12 +19,13 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
         - Anreicherung der Erstabfragen (bspw. News-Domains mit Koordinaten)
 
 (3) Speichern der Daten in einer Database wie MySQL oder PostgreSQL sowie SQL Abfragen aus dieser (SQLite zählt nicht!!!)
-    Alle gefetchen Daten werden in mehreren MySQL Tabellen inserted und von dort verwendet.
+    - Alle gefetchen Daten werden in mehreren MySQL Tabellen inserted und von dort verwendet.
 
 (4) Umfangreiche Explorative Datenanalyse (EDA)
-    Verschiedene Werte für die Marktdaten wurden ausgelesen und werden im EDA auf dem Index.hmtl angezeigt
+    - Verschiedene Werte für die Marktdaten wurden ausgelesen und werden im EDA auf dem Index.hmtl angezeigt
 
 (5) Verwendung eines ML Frameworks/Library (tensorflow/keras, sklearn oder im Kurs nicht betrachtete wie pytorch)
+    
 
 (6) Erstellen von Modellvorhersagen
 

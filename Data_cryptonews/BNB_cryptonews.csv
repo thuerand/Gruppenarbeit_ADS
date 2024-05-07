@@ -1,22 +1,22 @@
-ID_News,Crypto_Code,Kind,Positive_Votes,Negative_Votes,Important_Votes,Liked_Votes,Disliked_Votes,LOL_Votes,Toxic_Votes,Saved,Comments,published_at,Domain
-19408162,BNB,news,5,6,0,3,6,5,0,0,0,2024-04-15 15:51:00,u.today
-19337058,BNB,news,6,5,3,6,2,4,0,1,3,2024-03-18 19:00:16,newsbtc.com
-19335368,BNB,news,5,1,2,5,1,4,0,1,6,2024-03-18 09:47:00,u.today
-19318778,BNB,news,4,5,1,3,3,2,0,0,0,2024-03-11 18:00:00,u.today
-19318417,BNB,news,6,1,5,3,1,0,0,0,0,2024-03-11 16:00:24,newsbtc.com
-19316079,BNB,news,5,1,3,4,1,0,0,0,0,2024-03-10 19:00:08,cryptointelligence.co.uk
-19251666,BNB,news,5,3,2,4,1,2,0,1,7,2024-02-14 12:30:26,ambcrypto.com
-19249202,BNB,news,6,8,2,6,6,4,0,1,3,2024-02-13 14:52:41,cointelegraph.com
-19229874,BNB,news,16,17,6,13,14,20,0,0,5,2024-02-05 18:00:36,newsbtc.com
-19129964,BNB,news,10,0,5,8,1,1,0,2,0,2023-12-24 10:45:20,coinpaprika.com
-19128973,BNB,news,6,3,2,6,5,2,1,1,5,2023-12-23 12:09:47,finbold.com
-19128130,BNB,news,6,0,2,6,2,0,1,1,1,2023-12-22 19:35:00,dailycoin.com
-19064007,BNB,news,1,10,2,6,2,6,0,0,6,2023-11-26 10:22:23,coinpaprika.com
-19058621,BNB,news,9,4,2,4,4,3,0,0,0,2023-11-23 12:00:54,bitcoinist.com
-19045035,BNB,news,2,4,0,1,4,2,0,0,0,2023-11-17 11:45:00,beincrypto.com
-18996171,BNB,news,5,2,4,6,3,3,0,3,0,2023-10-26 13:03:37,finbold.com
-18947452,BNB,news,5,4,3,3,3,4,0,0,4,2023-10-04 14:05:00,dailycoin.com
-18878781,BNB,news,0,7,5,4,0,2,0,4,4,2023-09-04 14:59:57,theblock.co
-18855159,BNB,news,2,3,6,3,3,7,0,4,3,2023-08-23 20:15:00,coinedition.com
-18839978,BNB,news,3,3,4,2,0,0,0,1,0,2023-08-16 08:59:21,finbold.com
-18773419,BNB,news,10,0,7,8,0,1,0,0,2,2023-07-14 05:51:56,blockworks.co
+ID_News,Crypto_Code,Kind,Title,Positive_Votes,Negative_Votes,Important_Votes,Liked_Votes,Disliked_Votes,LOL_Votes,Toxic_Votes,Saved,Comments,published_at,Domain
+19408162,BNB,news,ADA and BNB Price Prediction for April 15,5,6,0,3,6,5,0,0,0,2024-04-15 15:51:00,u.today
+19337058,BNB,news,Solana Surpasses Ethereum In Major Metric Amid Surge Above $200,6,6,3,6,2,4,0,1,3,2024-03-18 19:00:16,newsbtc.com
+19335368,BNB,news,"Solana (SOL) Flips Binance Coin (BNB), Is Ethereum Next?",5,1,2,5,1,4,0,1,6,2024-03-18 09:47:00,u.today
+19318778,BNB,news,ADA and BNB Price Prediction for March 11,4,5,1,3,3,2,0,0,0,2024-03-11 18:00:00,u.today
+19318417,BNB,news,"94 Million XRP Exits Binance As Bulls Reclaim Control, What’s Going On?",6,1,5,3,1,0,0,0,0,2024-03-11 16:00:24,newsbtc.com
+19316079,BNB,news,BNB Hits Two-Year High Amid Market Optimism – What Price Target is Next?,5,1,3,4,1,0,0,0,0,2024-03-10 19:00:08,cryptointelligence.co.uk
+19251666,BNB,news,Solana flips BNB again – Can SOL cement its position this time?,5,3,2,4,1,2,0,1,7,2024-02-14 12:30:26,ambcrypto.com
+19249202,BNB,news,"Solana’s market cap overtakes BNB, secures 4th position",6,8,2,6,6,4,0,1,3,2024-02-13 14:52:41,cointelegraph.com
+19229874,BNB,news,"Crypto Analyst Says ADA Price Will Rise To $8, Here’s When",16,17,6,13,14,20,0,0,5,2024-02-05 18:00:36,newsbtc.com
+19129964,BNB,news,"Solana Surges Past $110, Surpassing BNB as Fourth largest Crypto",10,0,5,8,1,1,0,2,0,2023-12-24 10:45:20,coinpaprika.com
+19128973,BNB,news,Solana dethrones BNB to rank as the top 4th cryptocurrency globally,6,3,2,6,5,2,1,1,5,2023-12-23 12:09:47,finbold.com
+19128130,BNB,news,"How Solana Briefly Overtook BNB, Became 4th Largest Crypto",6,0,2,6,2,0,1,1,1,2023-12-22 19:35:00,dailycoin.com
+19064007,BNB,news,Binance Sees Massive USDT Withdrawals as FUD Spreads,1,10,2,6,2,6,0,0,6,2023-11-26 10:22:23,coinpaprika.com
+19058621,BNB,news,Cardano Founder Shares What To Expect After Binance CEO’s Exit,9,4,2,4,4,3,0,0,0,2023-11-23 12:00:54,bitcoinist.com
+19045035,BNB,news,"Cryptos to Trade: Cardano (ADA), Binance (BNB) And Everlodge (EDLG)",2,4,0,1,4,2,0,0,0,2023-11-17 11:45:00,beincrypto.com
+18996171,BNB,news,ChatGPT picks 5 cryptocurrencies to buy for Halloween,5,2,4,6,3,3,0,3,0,2023-10-26 13:03:37,finbold.com
+18947452,BNB,news,"Chase Bank Adds SHIB, XRP Among Others for Mortgage Payments",5,4,3,3,3,4,0,0,4,2023-10-04 14:05:00,dailycoin.com
+18878781,BNB,news,Betting platform Stake sees over $41 million in suspicious crypto outflows,0,7,5,4,0,2,0,4,4,2023-09-04 14:59:57,theblock.co
+18855159,BNB,news,BNB Falls 14% After Binance Helps Russians ‘Move Money’,2,3,6,3,3,7,0,4,3,2023-08-23 20:15:00,coinedition.com
+18839978,BNB,news,BNB could crash 30% if it fails to reclaim this key support level,3,3,4,2,0,0,0,1,0,2023-08-16 08:59:21,finbold.com
+18773419,BNB,news,XRP flips BNB for first time in 2 years after court ruling,10,0,7,8,0,1,0,0,2,2023-07-14 05:51:56,blockworks.co

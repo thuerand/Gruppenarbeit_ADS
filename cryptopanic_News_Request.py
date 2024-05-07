@@ -35,6 +35,7 @@ def fetch_cryptonews(currencies):
                     'ID_News': entry['id'],
                     'Crypto_Code': currency,
                     'Kind': entry['kind'],
+                    'Title': entry['title'],
                     'Positive_Votes': entry['votes']['positive'],
                     'Negative_Votes': entry['votes']['negative'],
                     'Important_Votes': entry['votes']['important'],
@@ -62,7 +63,7 @@ def fetch_cryptonews(currencies):
 
             try:
                 existing_df = pd.read_csv(csv_file_path)
-                updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID_News'], keep='first')
+                updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID_News'], keep='last')
             except FileNotFoundError:
                 updated_df = new_df.drop_duplicates(subset=['ID_News'], keep='first')
 
