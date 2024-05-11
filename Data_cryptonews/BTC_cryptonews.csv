@@ -1,8 +1,11 @@
 ID_News,Crypto_Code,Kind,Title,Positive_Votes,Negative_Votes,Important_Votes,Liked_Votes,Disliked_Votes,LOL_Votes,Toxic_Votes,Saved,Comments,published_at,Domain
-19465261,BTC,news,Cardano Founder Considers Partnership With Bitcoin Cash – What Is It About?,6,5,5,6,2,4,0,1,1,2024-05-07 01:00:52,bitcoinist.com
-19461375,BTC,news,Nouriel Roubini Criticizes Bitcoin's Security and Decentralization Claims,12,1,10,11,1,3,0,5,1,2024-05-05 13:47:03,coinpaprika.com
-19461342,BTC,news,Grayscale Bitcoin Trust Records First Inflows After $17.5 Billion in Outflows,13,0,13,15,0,2,0,5,0,2024-05-05 13:29:55,coinpaprika.com
-19458682,BTC,news,"“US government can’t go bankrupt because we can print our own money,” says Biden Administration",3,1,9,3,2,17,0,1,9,2024-05-03 20:11:42,cryptobriefing.com
+19478103,BTC,news,"BREAKING: JPMorgan, Largest Bank in the US, Announces It Owns Bitcoin Spot ETF Holdings",10,1,7,6,0,3,0,0,0,2024-05-10 19:48:04,en.bitcoinsistemi.com
+19476700,BTC,news,"Joe Biden Is Trying To ‘Kill Crypto’ — Serious Warning Could Spell Chaos For Bitcoin, Ether, ADA, XRP",2,4,7,4,0,6,0,3,4,2024-05-10 11:20:43,zycrypto.com
+19469541,BTC,news,Argentina Launches Innovative Bitcoin Mining Project Using Stranded Gas,11,0,10,11,0,0,0,7,0,2024-05-08 09:13:14,coinpaprika.com
+19465261,BTC,news,Cardano Founder Considers Partnership With Bitcoin Cash – What Is It About?,12,6,10,10,2,5,0,1,2,2024-05-07 01:00:52,bitcoinist.com
+19461375,BTC,news,Nouriel Roubini Criticizes Bitcoin's Security and Decentralization Claims,13,1,10,11,1,3,0,5,1,2024-05-05 13:47:03,coinpaprika.com
+19461342,BTC,news,Grayscale Bitcoin Trust Records First Inflows After $17.5 Billion in Outflows,14,0,13,15,0,2,0,5,0,2024-05-05 13:29:55,coinpaprika.com
+19458682,BTC,news,"“US government can’t go bankrupt because we can print our own money,” says Biden Administration",3,1,9,3,2,19,0,2,9,2024-05-03 20:11:42,cryptobriefing.com
 19458456,BTC,news,"Solana to join Bitcoin and Ethereum as top crypto assets, $1.6 trillion asset manager predicts",8,3,2,5,2,2,0,1,2,2024-05-03 18:21:55,cryptobriefing.com
 19450349,BTC,news,Cardano Whale Signal Historically Correlated With Price Reversals Flashes Green: Santiment,11,6,5,10,6,5,0,1,1,2024-05-01 09:15:58,dailyhodl.com
 19450201,BTC,news,"Bitcoin Sinks Below $58K, Crypto Market Drops 9% in Run-Up to Fed Decision",5,9,7,4,2,0,0,0,1,2024-05-01 08:22:29,coindesk.com
@@ -27,51 +30,51 @@ ID_News,Crypto_Code,Kind,Title,Positive_Votes,Negative_Votes,Important_Votes,Lik
 19422664,BTC,news,Opportunity-This-1-cryptocurrency-could-surge-as-Bitcoin-fees-skyrocket,4,2,2,3,2,2,0,2,0,2024-04-20 13:18:39,finbold.com
 19422411,BTC,news,Bitcoin-fees-above-100-for-the-first-time-Sell-off-incoming,4,6,3,4,4,4,0,1,1,2024-04-20 10:34:21,finbold.com
 19422386,BTC,news,Billionaire-Tim-Draper-Predicts-Unbelievable-10-Million-for-Bitcoin-Price,5,0,3,4,0,2,0,0,0,2024-04-20 10:18:07,en.bitcoinsistemi.com
-19422191,BTC,news,,5,0,4,5,0,0,0,1,0,2024-04-20 07:05:47,bitcoinist.com
-19420872,BTC,news,,3,3,1,1,2,1,0,0,0,2024-04-19 15:00:00,beincrypto.com
-19420330,BTC,news,,8,5,4,6,5,3,0,1,0,2024-04-19 13:30:00,coinedition.com
-19417170,BTC,news,,7,0,4,7,0,0,0,0,0,2024-04-18 13:06:00,u.today
-19416238,BTC,news,,7,2,3,5,2,3,0,1,0,2024-04-18 08:00:33,ambcrypto.com
-19413988,BTC,news,,7,4,3,3,2,3,0,0,4,2024-04-17 13:00:49,newsbtc.com
-19412872,BTC,news,,1,5,1,2,3,7,0,1,10,2024-04-17 06:49:39,newsbtc.com
-19412047,BTC,news,,6,0,2,6,0,0,0,0,0,2024-04-16 21:04:02,decrypt.co
-19409075,BTC,news,,11,0,6,9,0,0,0,1,0,2024-04-15 23:30:00,beincrypto.com
-19406925,BTC,news,,8,0,2,2,0,0,0,0,0,2024-04-15 09:47:05,forkast.news
-19406768,BTC,news,,12,0,6,8,0,1,0,0,1,2024-04-15 09:03:06,en.bitcoinsistemi.com
-19406473,BTC,news,,13,0,9,10,0,0,0,3,0,2024-04-15 07:25:11,coinpaprika.com
-19406412,BTC,news,,32,0,15,26,0,0,0,2,5,2024-04-15 07:00:14,newsbtc.com
-19405501,BTC,media,,6,0,3,3,1,2,0,0,1,2024-04-14 14:30:04,youtube.com
-19405483,BTC,news,,6,0,2,5,0,1,0,1,1,2024-04-14 14:15:21,finbold.com
-19405047,BTC,news,,8,0,4,6,0,1,0,0,0,2024-04-14 08:05:53,coinpaprika.com
-19404547,BTC,news,,7,13,11,6,3,1,0,1,15,2024-04-13 19:49:07,en.bitcoinsistemi.com
-19402608,BTC,news,,3,6,1,3,5,5,0,0,3,2024-04-12 17:00:48,ambcrypto.com
-19401842,BTC,news,,12,0,8,7,0,2,0,0,3,2024-04-12 12:58:44,feeds2.benzinga.com
-19401409,BTC,news,,14,0,12,13,0,0,0,0,2,2024-04-12 11:14:05,en.bitcoinsistemi.com
-19400809,BTC,news,,7,0,5,5,0,0,0,2,0,2024-04-12 07:54:53,coinpaprika.com
-19397399,BTC,news,,9,4,3,7,4,4,0,2,0,2024-04-11 01:53:05,feeds2.benzinga.com
-19396887,BTC,news,,0,6,1,0,0,2,0,0,0,2024-04-10 20:00:48,bitcoinist.com
-19394653,BTC,news,,15,0,10,8,0,0,0,6,0,2024-04-10 06:41:00,coinpaprika.com
-19386018,BTC,news,,6,0,3,3,0,0,0,0,0,2024-04-06 19:05:00,dailycoin.com
-19382443,BTC,news,,11,0,6,9,0,0,0,3,0,2024-04-05 06:51:20,coinpaprika.com
-19381810,BTC,news,,6,2,2,4,0,0,0,0,1,2024-04-04 23:00:54,cryptoslate.com
-19381740,BTC,news,,2,5,1,2,4,3,0,1,1,2024-04-04 22:00:23,ambcrypto.com
-19376271,BTC,news,,8,0,4,7,0,0,0,3,0,2024-04-03 07:26:55,coinpaprika.com
-19376234,BTC,news,,9,1,7,6,0,1,0,5,0,2024-04-03 07:14:26,coinpaprika.com
-19373052,BTC,news,,13,0,10,12,0,0,0,1,1,2024-04-02 05:29:20,coinpaprika.com
-19369074,BTC,news,,12,0,6,9,0,1,0,2,1,2024-03-31 07:04:57,dailyhodl.com
-19361801,BTC,news,,7,0,2,4,0,0,0,1,6,2024-03-28 01:08:00,cointelegraph.com
-19361263,BTC,news,,5,4,0,3,1,1,0,1,0,2024-03-27 19:55:23,dailyhodl.com
-19360824,BTC,news,,5,4,1,3,4,3,0,0,0,2024-03-27 17:00:36,newsbtc.com
-19360171,BTC,news,,1,7,1,0,3,3,0,1,2,2024-03-27 13:57:06,en.bitcoinsistemi.com
-19357753,BTC,news,,6,7,2,6,6,5,0,0,0,2024-03-26 17:30:03,bitcoinist.com
-19357169,BTC,news,,0,5,4,0,2,4,0,0,6,2024-03-26 15:05:05,en.bitcoinsistemi.com
-19355955,BTC,news,,5,0,4,8,0,0,0,0,0,2024-03-26 09:15:37,dailyhodl.com
-19355800,BTC,news,,8,0,6,8,0,0,0,4,0,2024-03-26 08:01:40,coinpaprika.com
-19355317,BTC,news,,10,2,7,8,0,0,0,1,1,2024-03-26 01:00:45,cryptobriefing.com
-19355264,BTC,news,,7,0,5,7,0,0,0,2,2,2024-03-26 00:02:31,cointelegraph.com
-19354549,BTC,news,,12,0,10,10,0,0,0,0,3,2024-03-25 17:30:05,coindesk.com
-19349738,BTC,news,,14,7,9,14,8,7,0,1,3,2024-03-22 23:00:00,cryptoglobe.com
-19349596,BTC,news,,3,3,3,4,0,5,0,1,5,2024-03-22 21:21:02,cryptobriefing.com
-19348727,BTC,news,,0,1,9,1,1,0,0,3,2,2024-03-22 15:00:03,bitcoinist.com
-19344759,BTC,news,,5,0,4,3,0,0,0,2,0,2024-03-21 09:30:00,coingabbar.com
-19343592,BTC,news,,1,10,0,1,7,7,0,1,0,2024-03-20 20:00:38,newsbtc.com
+19422191,BTC,news,breaking-bitcoin-halving-2024-complete-what-expect,5,0,4,5,0,0,0,1,0,2024-04-20 07:05:47,bitcoinist.com
+19420872,BTC,news,Solana (SOL) Hits $130: Is a Price Upswing on the Horizon?,3,3,1,1,2,1,0,0,0,2024-04-19 15:00:00,beincrypto.com
+19420330,BTC,news,Cardano’s 800% Rise Since Bitcoin Halving: Analyst’s Insights,8,5,4,6,5,3,0,1,0,2024-04-19 13:30:00,coinedition.com
+19417170,BTC,news,"Bitcoin up 800% Since Last Halving, But Here's What Happened to Gold Holders: Anthony Pompliano",7,0,4,7,0,0,0,0,0,2024-04-18 13:06:00,u.today
+19416238,BTC,news,Cardano’s price may surprise you after Bitcoin’s halving – Here’s how,7,2,3,5,2,3,0,1,0,2024-04-18 08:00:33,ambcrypto.com
+19413988,BTC,news,Whale Alert: MATIC Poised For Epic Surge – Time To Dive In?,7,4,3,3,2,3,0,0,4,2024-04-17 13:00:49,newsbtc.com
+19412872,BTC,news,Cardano’s Dark Hour: Panic Grips Investors As ADA Loses 20% Of Its Value,1,5,1,2,3,7,0,1,10,2024-04-17 06:49:39,newsbtc.com
+19412047,BTC,news,Hong Kong's Bitcoin and Ethereum ETFs Could Fetch $25 Billion—If China Plays Nice,6,0,2,6,0,0,0,0,0,2024-04-16 21:04:02,decrypt.co
+19409075,BTC,news,Bitcoin Will Become the Best Savings Tool After the Upcoming Halving,11,0,6,9,0,0,0,1,0,2024-04-15 23:30:00,beincrypto.com
+19406925,BTC,news,Hong Kong approves spot Bitcoin ETF,8,0,2,2,0,0,0,0,0,2024-04-15 09:47:05,forkast.news
+19406768,BTC,news,Surprise Cryptocurrency Move from the German Banking Giant!,12,0,6,8,0,1,0,0,1,2024-04-15 09:03:06,en.bitcoinsistemi.com
+19406473,BTC,news,Bitcoin Mining Difficulty Reaches New Peak Ahead of Halving Event,13,0,9,10,0,0,0,3,0,2024-04-15 07:25:11,coinpaprika.com
+19406412,BTC,news,Breaking: Spot Bitcoin And Ethereum ETFs Approved In Hong Kong,32,0,15,26,0,0,0,2,5,2024-04-15 07:00:14,newsbtc.com
+19405501,BTC,media,Massive Bitcoin Supply Shock In 6 Days,6,0,3,3,1,2,0,0,1,2024-04-14 14:30:04,youtube.com
+19405483,BTC,news,"UFC 300 victorious fighter wants the $300,000 bonus in Bitcoin",6,0,2,5,0,1,0,1,1,2024-04-14 14:15:21,finbold.com
+19405047,BTC,news,Spot Bitcoin ETFs Shatter Predictions with Record AUM Growth,8,0,4,6,0,1,0,0,0,2024-04-14 08:05:53,coinpaprika.com
+19404547,BTC,news,BREAKING: Iran’s Attacks on Israel Allegedly Started with a Large Number of Drones! Bitcoin Reacts! Here is the Last Situation,7,13,11,6,3,1,0,1,15,2024-04-13 19:49:07,en.bitcoinsistemi.com
+19402608,BTC,news,Cardano ‘not a Bitcoin clone’: Unpacking ADA’s approach,3,6,1,3,5,5,0,0,3,2024-04-12 17:00:48,ambcrypto.com
+19401842,BTC,news,Hong Kong Poised To Approve Spot Bitcoin And Spot Ether ETFs: Report,12,0,8,7,0,2,0,0,3,2024-04-12 12:58:44,feeds2.benzinga.com
+19401409,BTC,news,Great News for Bitcoin and Ethereum from Hong Kong: Spot ETFs Launch on Monday,14,0,12,13,0,0,0,0,2,2024-04-12 11:14:05,en.bitcoinsistemi.com
+19400809,BTC,news,"US Banks And Wall Street Giants Buy Bitcoin ETFs, SEC Filings Reveal",7,0,5,5,0,0,0,2,0,2024-04-12 07:54:53,coinpaprika.com
+19397399,BTC,news,"This Ethereum-Killer Is Consolidating Before Heading For A 'Breakout' That Could See It Shoot Up 188%, Says Crypto Analyst",9,4,3,7,4,4,0,2,0,2024-04-11 01:53:05,feeds2.benzinga.com
+19396887,BTC,news,"Solana & Other Top Coins Lose Trading Volume, Market Interest Down?",0,6,1,0,0,2,0,0,0,2024-04-10 20:00:48,bitcoinist.com
+19394653,BTC,news,"Bitcoin Hits Record Low Reserves, Sparks Supply Shock Warning",15,0,10,8,0,0,0,6,0,2024-04-10 06:41:00,coinpaprika.com
+19386018,BTC,news,Bitcoin ETFs See 4-Day Inflow Surge as Investor Appetite Grows,6,0,3,3,0,0,0,0,0,2024-04-06 19:05:00,dailycoin.com
+19382443,BTC,news,Grayscale Faces Bitcoin ETF Withdrawals but Remains Optimistic Amid Competition,11,0,6,9,0,0,0,3,0,2024-04-05 06:51:20,coinpaprika.com
+19381810,BTC,news,"Morgan Stanley, UBS on the verge of approving Bitcoin ETF exposure",6,2,2,4,0,0,0,0,1,2024-04-04 23:00:54,cryptoslate.com
+19381740,BTC,news,Solana ‘beats’ Bitcoin with ‘2nd highest’ figures – Good news for SOL investors?,2,5,1,2,4,3,0,1,1,2024-04-04 22:00:23,ambcrypto.com
+19376271,BTC,news,Bitcoin Tests $65K as US Government Moves $2.1 Billion Silk Road Bitcoin to Coinbase – Where Next for BTC?,8,0,4,7,0,0,0,3,0,2024-04-03 07:26:55,coinpaprika.com
+19376234,BTC,news,Grayscale Bitcoin Trust Sees Lower Outflows as Interest in Bitcoin ETFs Soars,9,1,7,6,0,1,0,5,0,2024-04-03 07:14:26,coinpaprika.com
+19373052,BTC,news,First Bitcoin ETF Investment Revealed by South Carolina Firm in SEC Filing,13,0,10,12,0,0,0,1,1,2024-04-02 05:29:20,coinpaprika.com
+19369074,BTC,news,"Bitcoin Tapping Into $84,000,000,000,000 Market, BTC Adoption Now Overwhelming: Billionaire Mike Novogratz",12,0,6,9,0,1,0,2,1,2024-03-31 07:04:57,dailyhodl.com
+19361801,BTC,news,BlackRock CEO ’very bullish’ on Bitcoin as its ETF crosses $17B,7,0,2,4,0,0,0,1,6,2024-03-28 01:08:00,cointelegraph.com
+19361263,BTC,news,"Here’s How High Solana (SOL) Could Surge, According to Coin Bureau’s Guy Turner",5,4,0,3,1,1,0,1,0,2024-03-27 19:55:23,dailyhodl.com
+19360824,BTC,news,Here’s Why The Cardano Price Is Struggling Below $0.7,5,4,1,3,4,3,0,0,0,2024-03-27 17:00:36,newsbtc.com
+19360171,BTC,news,"JUST IN! Decision Made in Coinbase SEC Case, Bitcoin Reacted!"",1,7,1,0,3,3,0,1,2,2024-03-27 13:57:06,en.bitcoinsistemi.com
+19357753,BTC,news,Scoring A Win: Mastercard Endorses Ripple For Global Remittances – A Boost For XRP?,6,7,2,6,6,5,0,0,0,2024-03-26 17:30:03,bitcoinist.com
+19357169,BTC,news,BREAKING! US Department of Justice Sues Cryptocurrency Exchange KuCoin and Its Two Founders!,0,5,4,0,2,4,0,0,6,2024-03-26 15:05:05,en.bitcoinsistemi.com
+19355955,BTC,news,Altcoins Gearing Up To Outperform Bitcoin Following ‘Very Healthy’ Correction: Trader Michaël van de Poppe,5,0,4,8,0,0,0,0,0,2024-03-26 09:15:37,dailyhodl.com
+19355800,BTC,news,London Stock Exchange to Launch Crypto ETNs,8,0,6,8,0,0,0,4,0,2024-03-26 08:01:40,coinpaprika.com
+19355317,BTC,news,Bitcoin and Ethereum ETNs to debut on London Stock Exchange in May,10,2,7,8,0,0,0,1,1,2024-03-26 01:00:45,cryptobriefing.com
+19355264,BTC,news,Grayscale sees Ether ETF approvals despite SEC ‘lack of engagement’,7,0,5,7,0,0,0,2,2,2024-03-26 00:02:31,cointelegraph.com
+19354549,BTC,news,London Stock Exchange Will Start Market for Bitcoin and Ether ETNs May 28,12,0,10,10,0,0,0,0,3,2024-03-25 17:30:05,coindesk.com
+19349738,BTC,news,Cardano Defies Crypto Downturn: Smart Contract Development Up 170% Year-to-Date,14,7,9,14,8,7,0,1,3,2024-03-22 23:00:00,cryptoglobe.com
+19349596,BTC,news,"Bitcoin traders anticipate price drop below $50,000, options data show",3,3,3,4,0,5,0,1,5,2024-03-22 21:21:02,cryptobriefing.com
+19348727,BTC,news,Urgent Alert For Apple Mac Users: Your Cryptos Could Be At Risk,0,1,9,1,1,0,0,3,2,2024-03-22 15:00:03,bitcoinist.com
+19344759,BTC,news,YouTube Found Guilty in the Bitcoin Scam Lawsuit,5,0,4,3,0,0,0,2,0,2024-03-21 09:30:00,coingabbar.com
+19343592,BTC,news,Top 3 Solana Meme Coins To Buy Amid The Bitcoin Crash That Could 10x,1,10,0,1,7,7,0,1,0,2024-03-20 20:00:38,newsbtc.com
