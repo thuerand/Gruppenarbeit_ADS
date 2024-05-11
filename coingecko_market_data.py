@@ -1,16 +1,6 @@
 """ 
 coingecko_market_data.py
 """
-
-import os
-import requests
-import pandas as pd
-import mysql.connector
-from mysql.connector import Error
-from dateutil import parser
-from datetime import datetime, timedelta
-
-
 # Fetching market data the specific cryptocurrencies from coingecko.com
 
 import os
@@ -23,7 +13,7 @@ from datetime import datetime, timedelta
 def fetch_and_save_crypto_hourly_data(crypto_ID, crypto_name, folder_path='data_cryptocurrency_rate'):
     # Setting start and end date for the data fetch
     end_date = datetime.now()
-    start_date = end_date - timedelta(days=7)
+    start_date = end_date - timedelta(days=1)
     start_timestamp = int(start_date.timestamp())
     end_timestamp = int(end_date.timestamp())
 

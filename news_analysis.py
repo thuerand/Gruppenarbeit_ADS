@@ -5,7 +5,7 @@ from textblob import TextBlob
 def analyze_sentiment(text):
     blob = TextBlob(text)
     polarity = blob.sentiment.polarity
-    return polarity
+    return "{:.4f}".format(polarity)
 
 def analyze_news_sentiments():
     try:

@@ -59,17 +59,8 @@ def fetch_cryptonews(currencies):
                 
                 flattened_data.append(entry_data)
 
-                # Insert into database using INSERT IGNORE to avoid duplicates
-                insert_query = """
-                INSERT IGNORE INTO crypto_news
-                (ID_News, Crypto_Code, Kind, Title, Positive_Votes, Negative_Votes, Important_Votes, Liked_Votes, Disliked_Votes, LOL_Votes, Toxic_Votes, Saved, Comments, published_at, Domain)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
-                """
-                cursor.execute(insert_query, entry_data)
-
-            connection.commit()
-
             new_df = pd.DataFrame(flattened_data, columns=['ID_News', 'Crypto_Code', 'Kind', 'Title', 'Positive_Votes', 'Negative_Votes', 'Important_Votes', 'Liked_Votes', 'Disliked_Votes', 'LOL_Votes', 'Toxic_Votes', 'Saved', 'Comments', 'published_at', 'Domain'])
+
             try:
                 existing_df = pd.read_csv(csv_file_path)
                 updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID_News'], keep='last')
@@ -78,6 +69,17 @@ def fetch_cryptonews(currencies):
 
             updated_df.sort_values(by='ID_News', ascending=False, inplace=True)
             updated_df.to_csv(csv_file_path, index=False)
+
+            # Insert each row into the database
+            insert_query = """
+            INSERT IGNORE INTO crypto_news
+            (ID_News, Crypto_Code, Kind, Title, Positive_Votes, Negative_Votes, Important_Votes, Liked_Votes, Disliked_Votes, LOL_Votes, Toxic_Votes, Saved, Comments, published_at, Domain)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+            """
+            for index, row in updated_df.iterrows():
+                cursor.execute(insert_query, tuple(row))
+
+            connection.commit()
             print(f"Data for {currency} has been updated in {csv_file_path} and database.")
         else:
             print(f"Error retrieving data for {currency}: {response.status_code}")
