@@ -19,6 +19,14 @@ def fetch_cryptonews(currencies):
         existing_HQ_df = pd.DataFrame(columns=['Domain', 'hq_location'])
 
     base_url = "https://cryptopanic.com/api/v1/posts/?auth_token=40638bc52524aa59273d51fac8edc7d377671007&filter=hot&currencies="
+    
+    connection = mysql.connector.connect(
+        host='localhost',
+        user='myuser',
+        password='mypassword',
+        database='mydatabase'
+    )
+    cursor = connection.cursor()
 
     for currency in currencies:
         url = base_url + currency
@@ -31,36 +39,37 @@ def fetch_cryptonews(currencies):
 
             for entry in data['results']:
                 published_at = parser.parse(entry['published_at']).strftime('%Y-%m-%d %H:%M:%S')
-                entry_data = {
-                    'ID_News': entry['id'],
-                    'Crypto_Code': currency,
-                    'Kind': entry['kind'],
-                    'Title': entry['title'],
-                    'Positive_Votes': entry['votes']['positive'],
-                    'Negative_Votes': entry['votes']['negative'],
-                    'Important_Votes': entry['votes']['important'],
-                    'Liked_Votes': entry['votes']['liked'],
-                    'Disliked_Votes': entry['votes']['disliked'],
-                    'LOL_Votes': entry['votes']['lol'],
-                    'Toxic_Votes': entry['votes']['toxic'],
-                    'Saved': entry['votes']['saved'],
-                    'Comments': entry['votes']['comments'],
-                    'published_at': published_at,
-                    'Domain': entry['domain'],
-                }
+                entry_data = (
+                    entry['id'],
+                    currency,
+                    entry['kind'],
+                    entry['title'],
+                    entry['votes']['positive'],
+                    entry['votes']['negative'],
+                    entry['votes']['important'],
+                    entry['votes']['liked'],
+                    entry['votes']['disliked'],
+                    entry['votes']['lol'],
+                    entry['votes']['toxic'],
+                    entry['votes']['saved'],
+                    entry['votes']['comments'],
+                    published_at,
+                    entry['domain'],
+                )
+                
                 flattened_data.append(entry_data)
 
-            new_df = pd.DataFrame(flattened_data)
-            new_HQ_df = new_df[['Domain']].drop_duplicates()
+                # Insert into database using INSERT IGNORE to avoid duplicates
+                insert_query = """
+                INSERT IGNORE INTO crypto_news
+                (ID_News, Crypto_Code, Kind, Title, Positive_Votes, Negative_Votes, Important_Votes, Liked_Votes, Disliked_Votes, LOL_Votes, Toxic_Votes, Saved, Comments, published_at, Domain)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+                """
+                cursor.execute(insert_query, entry_data)
 
-            # Check for new domains
-            new_domains = new_HQ_df[~new_HQ_df['Domain'].isin(existing_HQ_df['Domain'])]
-            if not new_domains.empty:
-                new_domains['hq_location'] = pd.NA  # Initialize with NA
-                existing_HQ_df = pd.concat([existing_HQ_df, new_domains], ignore_index=True)
-                existing_HQ_df.to_csv(existing_HQ_csv_path, index=False)
-                print("New domains added to HQ database.")
+            connection.commit()
 
+            new_df = pd.DataFrame(flattened_data, columns=['ID_News', 'Crypto_Code', 'Kind', 'Title', 'Positive_Votes', 'Negative_Votes', 'Important_Votes', 'Liked_Votes', 'Disliked_Votes', 'LOL_Votes', 'Toxic_Votes', 'Saved', 'Comments', 'published_at', 'Domain'])
             try:
                 existing_df = pd.read_csv(csv_file_path)
                 updated_df = pd.concat([existing_df, new_df], ignore_index=True).drop_duplicates(subset=['ID_News'], keep='last')
@@ -69,11 +78,12 @@ def fetch_cryptonews(currencies):
 
             updated_df.sort_values(by='ID_News', ascending=False, inplace=True)
             updated_df.to_csv(csv_file_path, index=False)
-
-            print(f"Data for {currency} has been updated in {csv_file_path}.")
-
+            print(f"Data for {currency} has been updated in {csv_file_path} and database.")
         else:
             print(f"Error retrieving data for {currency}: {response.status_code}")
 
+    cursor.close()
+    connection.close()
+
 # Example usage - for testing
-#fetch_cryptonews(["BTC"])
+# fetch_cryptonews(["BTC"])

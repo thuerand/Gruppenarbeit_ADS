@@ -12,7 +12,7 @@ def get_news_record():
             cursor = connection.cursor()
             
             # Define the SELECT statement query
-            query = "SELECT Domain, hq_location, latitude, longitude FROM HQ_newagency;"
+            query = "SELECT * FROM crypto_news;"
             cursor.execute(query)
             
             # Fetch the results

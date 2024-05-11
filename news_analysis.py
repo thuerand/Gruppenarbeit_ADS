@@ -1,31 +1,46 @@
-"""
-news_analysis.py
-
-Analyzing the news to predict the future price of a cryptocurrency using votes on the news and the analysis of the news text of NLP.
-Goal is the Sentiment Analysis of the news.
-
-"""
-
+import mysql.connector
+from mysql.connector import Error
 from textblob import TextBlob
 
 def analyze_sentiment(text):
-    # Erstellen eines TextBlob-Objekts
     blob = TextBlob(text)
-    
-    # Erhalten des Sentiment-Wertes
-    sentiment = blob.sentiment
-    
-    # sentiment.polarity gibt Werte von -1 bis 1, wo -1 sehr negativ und 1 sehr positiv bedeutet
-    if sentiment.polarity > 0:
-        return "Positiv"
-    elif sentiment.polarity < 0:
-        return "Negativ"
-    else:
-        return "Neutral"
+    polarity = blob.sentiment.polarity
+    print(polarity)
+    return polarity
 
-# Beispieltexte
-text1 = "Bitcoin-miners-underwater-as-production-costs-surge-post-halving"
-text2 = "Bitcoin miners underwater as production costs surge post halving"
+def analyze_news_sentiments():
+    try:
+        connection = mysql.connector.connect(
+            host='localhost',
+            user='myuser',
+            password='mypassword',
+            database='mydatabase'
+        )
+        # Using buffered cursor
+        cursor = connection.cursor(buffered=True)
 
-print("Text 1 Sentiment: ", analyze_sentiment(text1))
-print("Text 2 Sentiment: ", analyze_sentiment(text2))
+        select_query = "SELECT ID_News, Title FROM crypto_news WHERE sentiment IS NULL"
+        cursor.execute(select_query)
+
+        updates = []
+        for (id_news, title) in cursor:
+            sentiment_polarity = analyze_sentiment(title)
+            updates.append((sentiment_polarity, id_news))
+
+        # Execute updates after reading all rows
+        for sentiment_polarity, id_news in updates:
+            update_query = "UPDATE crypto_news SET sentiment = %s WHERE ID_News = %s"
+            cursor.execute(update_query, (sentiment_polarity, id_news))
+
+        connection.commit()
+        print("Sentiment analysis complete and database updated.")
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+
+# Example usage - for testing
+# analyze_news_sentiments()

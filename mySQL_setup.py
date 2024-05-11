@@ -92,6 +92,7 @@ def create_mysql_tables():
             Saved INT,
             Comments INT,
             published_at DATETIME,
+            sentiment VARCHAR(20),
             Domain VARCHAR(100),
             UNIQUE (ID_News, Crypto_Code)
         )

@@ -12,7 +12,10 @@ scipy==1.13.0 #Different to ASD-Standard
 textblob==0.18.0.post0 #Different to ASD-Standard
 webdriver-manager==4.0.1
 matplotlib==3.8.2
-
+pyarrow==16.0.0
+tensorflow==2.16.1
+scikit-learn==1.4.2
+SQLAlchemy==2.0.30
 #Thoughts
 #import os --> where does it come from?
 
