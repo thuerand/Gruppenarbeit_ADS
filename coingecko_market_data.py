@@ -23,7 +23,7 @@ from datetime import datetime, timedelta
 def fetch_and_save_crypto_hourly_data(crypto_ID, crypto_name, folder_path='data_cryptocurrency_rate'):
     # Setting start and end date for the data fetch
     end_date = datetime.now()
-    start_date = end_date - timedelta(days=2)  # Fetching data for the last 2 days for better accuracy
+    start_date = end_date - timedelta(days=7)
     start_timestamp = int(start_date.timestamp())
     end_timestamp = int(end_date.timestamp())
 
@@ -92,4 +92,4 @@ def fetch_and_save_crypto_hourly_data(crypto_ID, crypto_name, folder_path='data_
         print(f"Failed to fetch data for {crypto_ID}: {response.status_code}")
 
 # Example usage - for testing
-fetch_and_save_crypto_hourly_data("BTC", "bitcoin")
+# fetch_and_save_crypto_hourly_data("BTC", "bitcoin")

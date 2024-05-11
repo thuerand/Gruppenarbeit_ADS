@@ -13,7 +13,7 @@ from similaweb_news_hq import get_hq_from_newsagencies
 from HQ_visualized import update_database_and_csv_with_coordinates, fetch_and_create_map
 from eda_marketdata import analyze_and_export_data
 from news_analysis import analyze_news_sentiments
-from crypto_rate_prediction import predict_crypto_rate
+#from crypto_rate_prediction import predict_crypto_rate
 
 print("Starting the application...")
 
@@ -67,9 +67,8 @@ print("Starting sentiment analysis of the news data...")
 analyze_news_sentiments() # Assuming this function is defined elsewhere
 print("Sentiment analysis of the news data completed.")
 
-
 # Invoke predictions after all data fetching and processing
-# print("Starting crypto rate predictions...")
+print("Starting crypto rate predictions...")
 # for crypto_code in crypto_ids_full.keys():
 #     print(f"Predicting rates for {crypto_code}")
 #     predictions = predict_crypto_rate(crypto_code)
