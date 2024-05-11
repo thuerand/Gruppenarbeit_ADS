@@ -53,7 +53,7 @@ Zusatzpunkte für Projektarbeit, falls Folgendes erfüllt (max. 7 Punkte):
 
 
 (6) Verwendung von im Unterricht behandelten NLP-Techniken
-
+    "Reduzieren, Extrahieren" wurde verwendet, damit die Sentimente der News-Titel bestimmt werden können und dadurch die News eine positive oder negativer Gewichtung der Cryptokurse bekommen.
 
 (7) Verfügbarmachen des Pythoncodes / der Jupyter notebooks in einem (public) GitHub Repository
     Ist bereits in einem Repo
