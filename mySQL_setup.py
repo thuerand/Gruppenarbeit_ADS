@@ -64,13 +64,13 @@ def create_mysql_tables():
     )
     cursor = db.cursor()
 
-    # Table creation for 'daily_data'
+    # Table creation for 'hourly_data'
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS daily_data (
+        CREATE TABLE IF NOT EXISTS hourly_data (
             id INT AUTO_INCREMENT PRIMARY KEY,
             Crypto_Code VARCHAR(10),
             value DECIMAL(10, 2),
-            date DATE,
+            datetime DATETIME,
             UNIQUE (Crypto_Code, date)
         )
     """)

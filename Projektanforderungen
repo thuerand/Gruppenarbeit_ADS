@@ -8,7 +8,9 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
         - Abrufen von Geodaten: opencagedata
         - etc
     WebScraping:
-        - Holen von HQ-Location der verschiedenen Domains: similaweb (einige Einträge wurden in der Zwischenzeit gelöscht..)
+        - Holen von HQ-Location der verschiedenen Domains: similaweb. Hinweise:
+                - einige Einträge wurden in der Zwischenzeit gelöscht - Bereinigung von SimilaWeb selbst
+                - Ebenfalls sind nur noch wenige Einträge auf similaWeb vorhanden (siehe ab Zeile 26 in "HQ_newsagency.csv")
 
 (2) Datenaufbereitung (z.B. Entfernen NAs und Duplikate, Erstellen neuer Variablen, Anreicherung der Daten, ...)
     Die Datenaufbereitung wird bei der Abfrage, Erstellung der CSVs oder beim Inserten in die DB gemacht:
@@ -25,7 +27,7 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
     - Verschiedene Werte für die Marktdaten wurden ausgelesen und werden im EDA auf dem Index.hmtl angezeigt
 
 (5) Verwendung eines ML Frameworks/Library (tensorflow/keras, sklearn oder im Kurs nicht betrachtete wie pytorch)
-    
+    - 
 
 (6) Erstellen von Modellvorhersagen
 
@@ -34,7 +36,7 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
 (8) Korrekte Interpretation der Modellergebnisse und Modellgütemasse
 
 (9) Bereitstellung des Materials (Daten, Jupyter Notebooks, ...) auf Moodle
-
+    Muss am schluss gemacht werden!!!
 
 Zusatzpunkte für Projektarbeit, falls Folgendes erfüllt (max. 7 Punkte):
 (1) Kreativität der Umsetzung (kreativ ist alles, was in den Lektionen und Übungen nicht vorgegeben wurde)
@@ -44,7 +46,7 @@ Zusatzpunkte für Projektarbeit, falls Folgendes erfüllt (max. 7 Punkte):
     Ja(?), Bearbeitung und temporäres Speichern der Daten werden in mySQL gemacht. CSVs sind lediglich zum endgültigen Spechern gedacht.
 
 (3) Integration und Visualisierung von geographischen Daten
-    Koordinaten von HQ-Locations werden gefetched und in einer Map aufgezeigt. Die Map ist als Output im Result-Ordner
+    Koordinaten von HQ-Locations werden gefetched und in einer Map aufgezeigt. Die Map ist als Output im Result-Ordner.
 
 (4) Verwendung einer fortgeschrittenen Deep Learning Struktur/Technik (z.B.CNN, RNN, Transfer Learning, Transformers …)
     
@@ -53,7 +55,7 @@ Zusatzpunkte für Projektarbeit, falls Folgendes erfüllt (max. 7 Punkte):
 
 
 (6) Verwendung von im Unterricht behandelten NLP-Techniken
-    "Reduzieren, Extrahieren" wurde verwendet, damit die Sentimente der News-Titel bestimmt werden können und dadurch die News eine positive oder negativer Gewichtung der Cryptokurse bekommen.
+    "Reduzieren, Extrahieren" wurde verwendet (NLP-Technik; Library "textblob"), damit Sentimente der News-Titel einfach bestimmt werden können und dadurch die News eine positive oder negativer Gewichtung der Cryptokurse bekommen.
 
 (7) Verfügbarmachen des Pythoncodes / der Jupyter notebooks in einem (public) GitHub Repository
-    Ist bereits in einem Repo
+    Ist bereits in einem Repo --> muss noch public gemacht werden!!!

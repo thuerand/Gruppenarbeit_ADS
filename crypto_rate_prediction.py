@@ -27,7 +27,7 @@ def fetch_data(engine, crypto_code):
     """Fetch data from MySQL database for a specific cryptocurrency."""
     query = f"""
     SELECT d.date, d.value AS price, n.Positive_Votes, n.Negative_Votes, n.Important_Votes, n.Liked_Votes, n.Disliked_Votes, n.LOL_Votes, n.Toxic_Votes, n.Saved, n.Comments
-    FROM daily_data d
+    FROM hourly_data d
     JOIN crypto_news n ON d.Crypto_Code = n.Crypto_Code AND DATE(d.date) = DATE(n.published_at)
     WHERE d.Crypto_Code = '{crypto_code}'
     ORDER BY d.date

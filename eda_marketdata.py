@@ -26,7 +26,7 @@ def analyze_and_export_data(crypto_code, crypto_name):
         )
 
         # Fetch the data specific to the cryptocurrency
-        query = f"SELECT value AS Price, date FROM daily_data WHERE Crypto_Code = '{crypto_code}' ORDER BY date"
+        query = f"SELECT value AS Price, date FROM hourly_data WHERE Crypto_Code = '{crypto_code}' ORDER BY date"
         df = pd.read_sql(query, connection)
         connection.close()
 

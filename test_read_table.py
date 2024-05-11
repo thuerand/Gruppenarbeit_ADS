@@ -12,7 +12,7 @@ def get_news_record():
             cursor = connection.cursor()
             
             # Define the SELECT statement query
-            query = "SELECT * FROM crypto_news;"
+            query = "SELECT * FROM hourly_data;"
             cursor.execute(query)
             
             # Fetch the results

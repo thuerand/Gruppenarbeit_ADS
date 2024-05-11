@@ -8,7 +8,7 @@
 from docker_images import run_install_Docker_images
 from mySQL_setup import run_mysql_container, create_mysql_tables, wait_for_mysql_container_ready
 from cryptopanic_News_Request import fetch_cryptonews
-from coingecko_market_data import fetch_and_save_crypto_daily_data
+from coingecko_market_data import fetch_and_save_crypto_hourly_data
 from similaweb_news_hq import get_hq_from_newsagencies
 from HQ_visualized import update_database_and_csv_with_coordinates, fetch_and_create_map
 from eda_marketdata import analyze_and_export_data
@@ -43,9 +43,9 @@ if wait_for_mysql_container_ready("localhost", "myuser", "mypassword", "mydataba
     fetch_cryptonews(list(crypto_ids_full.keys()))
     
     # Get rate of each relevant coin
-    print("Fetching daily market data from coingecko.com...")
+    print("Fetching hourly market data from coingecko.com...")
     for crypto_id, crypto_name in crypto_ids_full.items():
-        fetch_and_save_crypto_daily_data(crypto_id, crypto_name)
+        fetch_and_save_crypto_hourly_data(crypto_id, crypto_name)
     
     # Get HQ of the news agencies from data_cryptonews.csv
     get_hq_from_newsagencies()
@@ -69,7 +69,7 @@ print("Sentiment analysis of the news data completed.")
 
 
 # Invoke predictions after all data fetching and processing
-print("Starting crypto rate predictions...")
+# print("Starting crypto rate predictions...")
 # for crypto_code in crypto_ids_full.keys():
 #     print(f"Predicting rates for {crypto_code}")
 #     predictions = predict_crypto_rate(crypto_code)

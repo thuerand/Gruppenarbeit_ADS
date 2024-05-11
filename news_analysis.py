@@ -5,7 +5,6 @@ from textblob import TextBlob
 def analyze_sentiment(text):
     blob = TextBlob(text)
     polarity = blob.sentiment.polarity
-    print(polarity)
     return polarity
 
 def analyze_news_sentiments():
@@ -40,7 +39,6 @@ def analyze_news_sentiments():
         if connection.is_connected():
             cursor.close()
             connection.close()
-            print("MySQL connection is closed")
 
 # Example usage - for testing
 # analyze_news_sentiments()
