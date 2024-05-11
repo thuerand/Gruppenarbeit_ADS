@@ -26,7 +26,7 @@ def analyze_and_export_data(crypto_code, crypto_name):
         )
 
         # Fetch the data specific to the cryptocurrency
-        query = f"SELECT value AS Price, date FROM hourly_data WHERE Crypto_Code = '{crypto_code}' ORDER BY date"
+        query = f"SELECT value AS Price, Timestamp FROM hourly_data WHERE Crypto_Code = '{crypto_code}' ORDER BY timestamp"
         df = pd.read_sql(query, connection)
         connection.close()
 
@@ -40,9 +40,9 @@ def analyze_and_export_data(crypto_code, crypto_name):
 
         # Create a plot for price trends
         plt.figure(figsize=(10, 5))
-        plt.plot(df['date'], df['Price'], label='Price', color='blue')
+        plt.plot(df['Timestamp'], df['Price'], label='Price', color='blue')
         plt.title(f'Price Trends for {crypto_name}')
-        plt.xlabel('Date')
+        plt.xlabel('Timestamp')
         plt.ylabel('Price (USD)')
         plt.grid(True)
         plt.legend()
@@ -51,9 +51,9 @@ def analyze_and_export_data(crypto_code, crypto_name):
 
         # Create a plot for rolling standard deviation to show volatility
         plt.figure(figsize=(10, 5))
-        plt.plot(df['date'], df['Price'].rolling(window=7).std(), label='Rolling Std Dev (7 days)', color='red')
+        plt.plot(df['Timestamp'], df['Price'].rolling(window=7).std(), label='Rolling Std Dev (7 days)', color='red')
         plt.title(f'Price Volatility for {crypto_name}')
-        plt.xlabel('Date')
+        plt.xlabel('Timestamp')
         plt.ylabel('Standard Deviation')
         plt.grid(True)
         plt.legend()

@@ -70,8 +70,8 @@ def create_mysql_tables():
             id INT AUTO_INCREMENT PRIMARY KEY,
             Crypto_Code VARCHAR(10),
             value DECIMAL(10, 2),
-            datetime DATETIME,
-            UNIQUE (Crypto_Code, date)
+            timestamp DATETIME,
+            UNIQUE (Crypto_Code, timestamp)
         )
     """)
     # Table creation for 'crypto_news'
