@@ -1,117 +1,121 @@
-"""
-cryptorate_predction.py
-
-Trying to predict the future price of a cryptocurrency using votes on the news and the analysis of the news text of NLP.
-"""
 import os
-# Set the environment variable to suppress INFO logs
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
 import pandas as pd
 from sqlalchemy import create_engine
 from sklearn.preprocessing import StandardScaler
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM, Dropout, Input
-from tensorflow.keras.callbacks import EarlyStopping
-from tensorflow.keras.optimizers import Adam
-
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+import numpy as np
+from io import BytesIO
+import base64
 
 def create_db_connection():
-    """Establish a connection to the database using SQLAlchemy for easier query handling."""
+    """Establish a connection to the database using SQLAlchemy."""
     return create_engine('mysql+mysqlconnector://myuser:mypassword@localhost/mydatabase').connect()
 
 def fetch_data(crypto_code):
-    """Fetches hourly market data and corresponding news sentiment data for a specific cryptocurrency."""
     connection = create_db_connection()
-    market_query = f"""
-    SELECT timestamp, value
-    FROM hourly_data
-    WHERE Crypto_Code = '{crypto_code}'
-    ORDER BY timestamp;
-    """
-    news_query = f"""
-    SELECT published_at, sentiment, Positive_Votes, Negative_Votes, Important_Votes, Liked_Votes, Disliked_Votes, LOL_Votes, Toxic_Votes, Saved, Comments
-    FROM crypto_news
-    WHERE Crypto_Code = '{crypto_code}'
-    ORDER BY published_at;
-    """
-
+    market_query = f"SELECT timestamp, value FROM hourly_data WHERE Crypto_Code = '{crypto_code}' ORDER BY timestamp DESC LIMIT 960;"  # Last 40 days assuming 24 readings per day
+    news_query = f"SELECT published_at, sentiment, Positive_Votes, Negative_Votes, Important_Votes, Liked_Votes, Disliked_Votes, LOL_Votes, Toxic_Votes, Saved, Comments FROM crypto_news WHERE Crypto_Code = '{crypto_code}' ORDER BY published_at DESC LIMIT 960;"
     market_data = pd.read_sql(market_query, connection)
     news_data = pd.read_sql(news_query, connection)
     connection.close()
-    
     return market_data, news_data
 
 def preprocess_data(market_data, news_data):
-    """Preprocess and combine market and news data."""
     market_data['timestamp'] = pd.to_datetime(market_data['timestamp'])
     news_data['published_at'] = pd.to_datetime(news_data['published_at'])
-
-    """
-    Muss ausgebaut werden --> Exponential smoothing hilft nicht
-    # Exponential smoothing
-    alpha = 0.3  # Smoothing factor
-    smoothing_columns = ['sentiment', 'Positive_Votes', 'Negative_Votes', 'Important_Votes', 'Liked_Votes', 'Disliked_Votes', 'LOL_Votes', 'Toxic_Votes', 'Saved', 'Comments']
-    for column in smoothing_columns:
-        news_data[column] = news_data[column].astype(float).ffill().ewm(alpha=alpha).mean()
-    """
-    # Merge the data
     news_data.set_index('published_at', inplace=True)
-
-
-    combined_data = pd.merge_asof(
-        market_data.sort_values('timestamp'),
-        news_data.sort_values('published_at'),
-        left_on='timestamp',
-        right_index=True,
-        direction='nearest',  # Try changing to 'forward' or 'backward' if 'nearest' doesn't work
-        tolerance=pd.Timedelta('30m')  # Adjust tolerance to ensure closer matches
-    )
-
-    combined_data.dropna(inplace=True)  # Drop rows with NaNs
-    """
-    Muss ausgebaut werden --> Exponential smoothing hilft nicht
-    if combined_data.isna().any().any():
-        combined_data.fillna(method='ffill', inplace=True)  # forward fill to handle any remaining NaNs
-        combined_data.fillna(method='bfill', inplace=True)  # forward fill to handle any remaining NaNs
-    """
-    print(market_data.info())
-    print(news_data.info())
-    print(combined_data.info())
-
+    news_data = news_data.resample('h').ffill()
+    combined_data = pd.merge_asof(market_data.sort_values('timestamp'), news_data.sort_values('published_at'), left_on='timestamp', right_index=True, direction='nearest', tolerance=pd.Timedelta('1h'))
+    combined_data.dropna(inplace=True)
     return combined_data
 
-def create_features_targets(data):
+def create_features_targets(data, forecast_hours=167):
     """Prepare features and targets for the model."""
+    data = data.sort_values('timestamp')
     features = data[['Positive_Votes', 'Negative_Votes', 'Important_Votes', 'Liked_Votes', 'Disliked_Votes', 'LOL_Votes', 'Toxic_Votes', 'Saved', 'Comments', 'sentiment']]
+    
+    # Create lagged features efficiently
+    lags = {f'lag_{i}': data['value'].shift(-i) for i in range(1, forecast_hours + 1)}
+    lag_df = pd.DataFrame(lags)
+    
+    # Join lagged features to the main DataFrame
+    data = pd.concat([data, lag_df], axis=1)
+    
     scaler = StandardScaler()
-    features_scaled = scaler.fit_transform(features.fillna(0))  # Fill NaNs if any left
-    targets = data['value'].fillna(method='ffill')  # Ensure no NaNs in targets
-    return features_scaled, targets
+    features_scaled = scaler.fit_transform(features)
+    targets = data[[f'lag_{i}' for i in range(1, forecast_hours + 1)]].values
+    
+    # Exclude the last n rows for which we cannot create future targets
+    valid_indices = ~np.isnan(targets).any(axis=1)
+    return features_scaled[valid_indices], targets[valid_indices]
 
-def build_model():
-    """ Build and return a LSTM neural network model. """
-    model = Sequential([
-        Input(shape=(10, 1)),  # Assuming 10 features and modifying the shape accordingly
-        LSTM(50, return_sequences=True),
-        Dropout(0.2),
-        LSTM(50),
-        Dropout(0.2),
-        Dense(1)
-    ])
-    optimizer = Adam(learning_rate=0.001, decay=0.001/100)
-    model.compile(optimizer=optimizer, loss='mean_squared_error', metrics=['mae'])
-    return model
+def build_and_train_model(features, targets, crypto_code,n_estimators=100):
+    X_train, X_test, y_train, y_test = train_test_split(features, targets, test_size=0.2, random_state=42)
+    model = RandomForestRegressor(n_estimators=n_estimators, random_state=100)
+    model.fit(X_train, y_train)
+    predictions = model.predict(X_test)
+    mse = mean_squared_error(y_test, predictions)
+    rmse = mse ** 0.5  # Taking the square root manually
+    print(f"RMSE for {crypto_code}: {rmse}")
+    return model, X_test, y_test, predictions
 
-def train_model(model, X_train, y_train):
-    X_train = X_train.reshape(X_train.shape[0], X_train.shape[1], 1)  # Reshape for LSTM
-    early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
-    model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.1, callbacks=[early_stopping])
+def plot_predictions(data, predictions, crypto_name):
+    """ Plot historical data and future predictions with a continuous line """
+    plt.figure(figsize=(12, 6))
+    
+    # Plotting historical data
+    plt.plot(data['timestamp'], data['value'], label='Historical Daily Values', color='blue')
+
+    # Generate future timestamps starting right after the last historical timestamp
+    last_timestamp = data['timestamp'].iloc[-1]
+    future_timestamps = [last_timestamp + pd.Timedelta(hours=i) for i in range(1, len(predictions[-1]) + 1)]
+
+    # Adjust predictions to start from the last historical data point
+    full_predictions = np.concatenate(([data['value'].iloc[-1]], predictions[-1]))
+
+    # Plotting predicted values
+    plt.plot([last_timestamp] + future_timestamps, full_predictions, 'r-', label='Forecasted Values')
+    
+    plt.title(f'Historical and Forecasted Prices for {crypto_name}')
+    plt.xlabel('Date')
+    plt.ylabel('Price (USD)')
+    plt.legend()
+    plt.grid(True)
+
+    # Save plot to buffer for HTML conversion
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
+    buf.close()
+    
+    return f'<img src="data:image/png;base64,{image_base64}" alt="Historical and Predicted Prices"/>'
+
 
 # Execution flow
-crypto_code = 'BTC'
+crypto_code = 'BTC'  # Example for Bitcoin
 market_data, news_data = fetch_data(crypto_code)
 processed_data = preprocess_data(market_data, news_data)
-features_scaled, targets = create_features_targets(processed_data)
-model = build_model()
-train_model(model, features_scaled, targets)
+features_scaled, targets_future = create_features_targets(processed_data)
+model, X_test, y_test, predictions = build_and_train_model(features_scaled, targets_future, crypto_code)
+prediction_plot_html = plot_predictions(processed_data, predictions, crypto_code)
+
+# Save the plot to HTML
+html_content = f"""
+<html>
+<head>
+    <title>{crypto_code} Price Forecast</title>
+</head>
+<body>
+    <h1>Price Forecast for {crypto_code}</h1>
+    {prediction_plot_html}
+</body>
+</html>
+"""
+html_file_path = f"results/prediction_results_{crypto_code}.html"
+with open(html_file_path, 'w') as file:
+    file.write(html_content)
+print(f"Results saved to {html_file_path}")

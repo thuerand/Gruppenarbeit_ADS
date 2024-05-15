@@ -6,7 +6,6 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
         - Abrufen von News: cryptopanic
         - Abrufen von Marktdaten : coingecko
         - Abrufen von Geodaten: opencagedata
-        - etc
     WebScraping:
         - Holen von HQ-Location der verschiedenen Domains: similaweb. Hinweise:
                 - einige Einträge wurden in der Zwischenzeit gelöscht - Bereinigung von SimilaWeb selbst
@@ -27,7 +26,7 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
     - Verschiedene Werte für die Marktdaten wurden ausgelesen und werden im EDA auf dem Index.hmtl angezeigt
 
 (5) Verwendung eines ML Frameworks/Library (tensorflow/keras, sklearn oder im Kurs nicht betrachtete wie pytorch)
-    - tensorflow/keras wurde in diesem Project verwendet, um den Kurs der Cryptocurrencies zu berechnen.
+    - sklearn wurde in diesem Project verwendet, um den Kurs der Cryptocurrencies zu berechnen.
 
 (6) Erstellen von Modellvorhersagen
 
@@ -49,10 +48,10 @@ Zusatzpunkte für Projektarbeit, falls Folgendes erfüllt (max. 7 Punkte):
     Koordinaten von HQ-Locations werden gefetched und in einer Map aufgezeigt. Die Map ist als Output im Result-Ordner.
 
 (4) Verwendung einer fortgeschrittenen Deep Learning Struktur/Technik (z.B.CNN, RNN, Transfer Learning, Transformers …)
-    - Ein RNN wurde verwendet, im Detail ein Long short-term memory (LSTM).
+
 
 (5) Ermittlung von Modellierungshypothesen und Überprüfung von Modellierungsannahmen
-
+    
 
 (6) Verwendung von im Unterricht behandelten NLP-Techniken
     "Reduzieren, Extrahieren" wurde verwendet (NLP-Technik; Library "textblob"), damit Sentimente der News-Titel einfach bestimmt werden können und dadurch die News eine positive oder negativer Gewichtung der Cryptokurse bekommen.
