@@ -26,14 +26,18 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
     - Verschiedene Werte für die Marktdaten wurden ausgelesen und werden im EDA auf dem Index.hmtl angezeigt
 
 (5) Verwendung eines ML Frameworks/Library (tensorflow/keras, sklearn oder im Kurs nicht betrachtete wie pytorch)
-    - sklearn wurde in diesem Project verwendet, um den Kurs der Cryptocurrencies zu berechnen.
+    - sklearn wurde in diesem Project verwendet, um den Kurs der Cryptocurrencies zu berechnen. 
 
 (6) Erstellen von Modellvorhersagen
-
+    - I.O.
 (7) Evaluation der Modelle mit Hilfe geeigneter Modellgütemasse
-
+    - MSE bzw. RMSE
+    - MAE
+    - R2
 (8) Korrekte Interpretation der Modellergebnisse und Modellgütemasse
-
+    - MSE bzw. RMSE
+    - MAE
+    - R2
 (9) Bereitstellung des Materials (Daten, Jupyter Notebooks, ...) auf Moodle
     Muss am schluss gemacht werden!!!
 
@@ -48,10 +52,10 @@ Zusatzpunkte für Projektarbeit, falls Folgendes erfüllt (max. 7 Punkte):
     Koordinaten von HQ-Locations werden gefetched und in einer Map aufgezeigt. Die Map ist als Output im Result-Ordner.
 
 (4) Verwendung einer fortgeschrittenen Deep Learning Struktur/Technik (z.B.CNN, RNN, Transfer Learning, Transformers …)
-
+    - nein
 
 (5) Ermittlung von Modellierungshypothesen und Überprüfung von Modellierungsannahmen
-    
+    - Müssen wir noch finden
 
 (6) Verwendung von im Unterricht behandelten NLP-Techniken
     "Reduzieren, Extrahieren" wurde verwendet (NLP-Technik; Library "textblob"), damit Sentimente der News-Titel einfach bestimmt werden können und dadurch die News eine positive oder negativer Gewichtung der Cryptokurse bekommen.

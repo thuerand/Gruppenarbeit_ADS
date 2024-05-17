@@ -34,12 +34,12 @@
             padding: 10px 20px;
             display: inline-block;
         }
-        #cryptoSubMenu {
+        #cryptoSubMenu, #predictionSubMenu {
             padding-left: 20px;
             background: #e0e0e0; /* Lighter background for submenu */
             display: none; /* Hidden by default */
         }
-        #cryptoSubMenu li {
+        #cryptoSubMenu li, #predictionSubMenu li {
             display: block; /* List items displayed as block for vertical list */
         }
         #content {
@@ -63,7 +63,7 @@
         <ul>
             <li><a href="#" onclick="showSection('map'); return false;">HQ Map</a></li>
             <li><a href="#" onclick="showSection('Market Analysis'); return false;">Market Analysis - EDA</a></li>
-            <li><a href="#" onclick="showSection('other'); return false;">Other Section</a></li>
+            <li><a href="#" onclick="showSection('Market Prediction'); return false;">Market Prediction</a></li>
         </ul>
         <!-- Submenu for cryptocurrency analysis -->
         <ul id="cryptoSubMenu">
@@ -72,6 +72,14 @@
             <li><a href="#" onclick="changeCryptoAnalysis('ETH_analysis.html'); return false;">Ethereum</a></li>
             <li><a href="#" onclick="changeCryptoAnalysis('SOL_analysis.html'); return false;">Solana</a></li>
             <li><a href="#" onclick="changeCryptoAnalysis('USDT_analysis.html'); return false;">Tether</a></li>
+        </ul>
+        <!-- Submenu for cryptocurrency predictions -->
+        <ul id="predictionSubMenu">
+            <li><a href="#" onclick="changeCryptoAnalysis('BTC_prediction_results.html'); return false;">Bitcoin</a></li>
+            <li><a href="#" onclick="changeCryptoAnalysis('BNB_prediction_results.html'); return false;">BNB</a></li>
+            <li><a href="#" onclick="changeCryptoAnalysis('ETH_prediction_results.html'); return false;">Ethereum</a></li>
+            <li><a href="#" onclick="changeCryptoAnalysis('SOL_prediction_results.html'); return false;">Solana</a></li>
+            <li><a href="#" onclick="changeCryptoAnalysis('USDT_prediction_results.html'); return false;">Tether</a></li>
         </ul>
     </nav>
     <div id="content">
@@ -82,20 +90,25 @@
         function showSection(section) {
             var contentDiv = document.getElementById('content');
             var cryptoSubMenu = document.getElementById('cryptoSubMenu');
+            var predictionSubMenu = document.getElementById('predictionSubMenu');
             contentDiv.innerHTML = ''; // Clear current content
             var iframe = document.createElement('iframe');
 
             if (section === 'map') {
                 cryptoSubMenu.style.display = 'none';
+                predictionSubMenu.style.display = 'none';
                 iframe.setAttribute('src', 'results/hq_locations_map.html');
                 contentDiv.appendChild(iframe);
             } else if (section === 'Market Analysis') {
-                cryptoSubMenu.style.display = 'block'; // Show the crypto submenu
+                cryptoSubMenu.style.display = 'block';
+                predictionSubMenu.style.display = 'none';
                 iframe.setAttribute('src', 'results/BTC_analysis.html'); // Default to BTC analysis
                 contentDiv.appendChild(iframe);
-            } else if (section === 'other') {
+            } else if (section === 'Market Prediction') {
                 cryptoSubMenu.style.display = 'none';
-                // Add other content
+                predictionSubMenu.style.display = 'block';
+                iframe.setAttribute('src', 'results/BTC_prediction_results.html'); // Default to BTC prediction
+                contentDiv.appendChild(iframe);
             }
         }
 

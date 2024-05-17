@@ -3,7 +3,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
@@ -29,7 +29,6 @@ def preprocess_data(market_data, news_data):
     news_data.set_index('published_at', inplace=True)
     news_data = news_data.resample('h').ffill()
     combined_data = pd.merge_asof(market_data.sort_values('timestamp'), news_data.sort_values('published_at'), left_on='timestamp', right_index=True, direction='nearest', tolerance=pd.Timedelta('1h'))
-    combined_data.dropna(inplace=True)
     return combined_data
 
 def create_features_targets(data, forecast_hours=167):
@@ -58,9 +57,14 @@ def build_and_train_model(features, targets, crypto_code,n_estimators=100):
     model.fit(X_train, y_train)
     predictions = model.predict(X_test)
     mse = mean_squared_error(y_test, predictions)
-    rmse = mse ** 0.5  # Taking the square root manually
+    rmse = np.sqrt(mse)  # Root Mean Square Error
+    mae = mean_absolute_error(y_test, predictions)  # Mean Absolute Error
+    r2 = r2_score(y_test, predictions)  # R^2 Score
+    print(f"MSE for {crypto_code}: {mse}")
     print(f"RMSE for {crypto_code}: {rmse}")
-    return model, X_test, y_test, predictions
+    print(f"MAE for {crypto_code}: {mae}")
+    print(f"R2 for {crypto_code}: {r2}")
+    return predictions, mse, rmse, mae, r2
 
 def plot_predictions(data, predictions, crypto_name):
     """ Plot historical data and future predictions with a continuous line """
@@ -95,27 +99,34 @@ def plot_predictions(data, predictions, crypto_name):
     return f'<img src="data:image/png;base64,{image_base64}" alt="Historical and Predicted Prices"/>'
 
 
-# Execution flow
-crypto_code = 'BTC'  # Example for Bitcoin
-market_data, news_data = fetch_data(crypto_code)
-processed_data = preprocess_data(market_data, news_data)
-features_scaled, targets_future = create_features_targets(processed_data)
-model, X_test, y_test, predictions = build_and_train_model(features_scaled, targets_future, crypto_code)
-prediction_plot_html = plot_predictions(processed_data, predictions, crypto_code)
+def predict_crypto_rate(crypto_code, crypto_name):
+    market_data, news_data = fetch_data(crypto_code)
+    processed_data = preprocess_data(market_data, news_data)
+    features_scaled, targets_future = create_features_targets(processed_data)
+    predictions, mse, rmse, mae, r2 = build_and_train_model(features_scaled, targets_future, crypto_code)
+    prediction_plot_html = plot_predictions(processed_data, predictions, crypto_name)
 
-# Save the plot to HTML
-html_content = f"""
-<html>
-<head>
-    <title>{crypto_code} Price Forecast</title>
-</head>
-<body>
-    <h1>Price Forecast for {crypto_code}</h1>
-    {prediction_plot_html}
-</body>
-</html>
-"""
-html_file_path = f"results/prediction_results_{crypto_code}.html"
-with open(html_file_path, 'w') as file:
-    file.write(html_content)
-print(f"Results saved to {html_file_path}")
+    # Save the plot to HTML
+    html_content = f"""
+    <html>
+    <head>
+        <title>{crypto_name} Price Forecast</title>
+        <style>
+            body {{ font-family: Arial; }}
+            img {{ width: 50%; height: auto; }}
+        </style>
+    </head>
+    <body>
+        <h1>Price Forecast for {crypto_name}</h1>
+        <p><strong>Mean Squared Error:</strong> {mse:.2f}</p> 
+        <p><strong>Root Mean Square Error:</strong> {rmse:.2f}</p>
+        <p><strong>Mean Absolute Error:</strong> {mae:.2f}</p>
+        <p><strong>R^2 Score:</strong> {r2:.2f}</p>
+        {prediction_plot_html}
+    </body>
+    </html>
+    """
+    html_file_path = f"results/{crypto_code}_prediction_results.html"
+    with open(html_file_path, 'w') as file:
+        file.write(html_content)
+    print(f"Results saved to {html_file_path}")
