@@ -68,7 +68,7 @@
         <!-- Submenu for cryptocurrency analysis -->
         <ul id="cryptoSubMenu">
             <li><a href="#" onclick="changeCryptoAnalysis('BTC_analysis.html'); return false;">Bitcoin</a></li>
-            <li><a href="#" onclick="changeCryptoAnalysis('BNB_analysis.html'); return false;">BNB</a></li>
+            <li><a href="#" onclick="changeCryptoAnalysis('BNB_analysis.html'); return false;">Binancecoin</a></li>
             <li><a href="#" onclick="changeCryptoAnalysis('ETH_analysis.html'); return false;">Ethereum</a></li>
             <li><a href="#" onclick="changeCryptoAnalysis('SOL_analysis.html'); return false;">Solana</a></li>
             <li><a href="#" onclick="changeCryptoAnalysis('USDT_analysis.html'); return false;">Tether</a></li>
@@ -76,7 +76,7 @@
         <!-- Submenu for cryptocurrency predictions -->
         <ul id="predictionSubMenu">
             <li><a href="#" onclick="changeCryptoAnalysis('BTC_prediction_results.html'); return false;">Bitcoin</a></li>
-            <li><a href="#" onclick="changeCryptoAnalysis('BNB_prediction_results.html'); return false;">BNB</a></li>
+            <li><a href="#" onclick="changeCryptoAnalysis('BNB_prediction_results.html'); return false;">Binancecoin</a></li>
             <li><a href="#" onclick="changeCryptoAnalysis('ETH_prediction_results.html'); return false;">Ethereum</a></li>
             <li><a href="#" onclick="changeCryptoAnalysis('SOL_prediction_results.html'); return false;">Solana</a></li>
             <li><a href="#" onclick="changeCryptoAnalysis('USDT_prediction_results.html'); return false;">Tether</a></li>
@@ -97,17 +97,17 @@
             if (section === 'map') {
                 cryptoSubMenu.style.display = 'none';
                 predictionSubMenu.style.display = 'none';
-                iframe.setAttribute('src', 'results/hq_locations_map.html');
+                iframe.setAttribute('src', 'resources/results/hq_locations_map.html');
                 contentDiv.appendChild(iframe);
             } else if (section === 'Market Analysis') {
                 cryptoSubMenu.style.display = 'block';
                 predictionSubMenu.style.display = 'none';
-                iframe.setAttribute('src', 'results/BTC_analysis.html'); // Default to BTC analysis
+                iframe.setAttribute('src', 'resources/results/BTC_analysis.html'); // Default to BTC analysis
                 contentDiv.appendChild(iframe);
             } else if (section === 'Market Prediction') {
                 cryptoSubMenu.style.display = 'none';
                 predictionSubMenu.style.display = 'block';
-                iframe.setAttribute('src', 'results/BTC_prediction_results.html'); // Default to BTC prediction
+                iframe.setAttribute('src', 'resources/results/BTC_prediction_results.html'); // Default to BTC prediction
                 contentDiv.appendChild(iframe);
             }
         }
@@ -116,7 +116,7 @@
             var contentDiv = document.getElementById('content');
             contentDiv.innerHTML = ''; // Clear current content
             var iframe = document.createElement('iframe');
-            iframe.setAttribute('src', 'results/' + analysisFile);
+            iframe.setAttribute('src', 'resources/results/' + analysisFile);
             contentDiv.appendChild(iframe);
         }
     </script>
