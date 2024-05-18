@@ -29,6 +29,8 @@ def fetch_coordinates(api_key, address):
     return None, None
 
 # Function to update the database and CSV file with coordinates
+
+
 def update_database_and_csv_with_coordinates():
     csv_file_path = 'resources/data_cryptonews/HQ_newsagency.csv'
     df = pd.read_csv(csv_file_path)
@@ -41,7 +43,7 @@ def update_database_and_csv_with_coordinates():
             database='mydatabase'
         )
         cursor = connection.cursor()
-        api_key = 'your_api_key'
+        api_key = '77ace187bc104bcfa94efa947fd84326'
 
         for index, row in df.iterrows():
             # Only fetch coordinates if they are NaN in the DataFrame
