@@ -100,4 +100,4 @@ def get_hq_from_newsagencies():
             connection.close()
 
 # Example usage - for testing
-get_hq_from_newsagencies()
+# get_hq_from_newsagencies()
