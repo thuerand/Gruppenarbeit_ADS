@@ -7,16 +7,17 @@ from dateutil import parser
 
 def fetch_cryptonews(currencies):
     print("Fetching news data from cryptopanic.com...")
-    folder_name = 'resources/data_cryptonews'
+    folder_name = 'resources\data_cryptonews'
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
-
+    
     existing_HQ_csv_path = os.path.join(folder_name, 'HQ_newsagency.csv')
 
     try:
         existing_HQ_df = pd.read_csv(existing_HQ_csv_path)
-    except FileNotFoundError:
-        existing_HQ_df = pd.DataFrame(columns=['Domain', 'hq_location'])
+    except Exception as e:
+        print("Error reading the file:", e)
+
 
     base_url = "https://cryptopanic.com/api/v1/posts/?auth_token=40638bc52524aa59273d51fac8edc7d377671007&filter=hot&currencies="
     

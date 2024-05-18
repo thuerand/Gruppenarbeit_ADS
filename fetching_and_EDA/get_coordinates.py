@@ -29,8 +29,6 @@ def fetch_coordinates(api_key, address):
     return None, None
 
 # Function to update the database and CSV file with coordinates
-
-
 def update_database_and_csv_with_coordinates():
     csv_file_path = 'resources/data_cryptonews/HQ_newsagency.csv'
     df = pd.read_csv(csv_file_path)

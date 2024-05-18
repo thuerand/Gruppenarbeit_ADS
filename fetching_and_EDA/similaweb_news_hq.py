@@ -48,9 +48,9 @@ def get_hq_from_newsagencies():
                 driver.get(
                     f"https://www.similarweb.com/website/{domain}/#overview")
                 WebDriverWait(driver, 10).until(EC.presence_of_element_located(
-                    (By.XPATH, '/html/body/div[1]/div/main/div/div/div[1]/section/div/div/div/div[5]/div/dl/div[4]/dd')))
+                    (By.XPATH, '/html/body/div[8]/div/main/div/div/div[1]/section/div/div/div/div[5]/div/dl/div[4]/dd')))
                 hq_element = driver.find_element(
-                    By.XPATH, '/html/body/div[1]/div/main/div/div/div[1]/section/div/div/div/div[5]/div/dl/div[4]/dd')
+                    By.XPATH, '/html/body/div[8]/div/main/div/div/div[1]/section/div/div/div/div[5]/div/dl/div[4]/dd')
                 hq_location = hq_element.text.strip()
 
                 # Update the DataFrame if the HQ location is found
@@ -100,4 +100,4 @@ def get_hq_from_newsagencies():
             connection.close()
 
 # Example usage - for testing
-#get_hq_from_newsagencies()
+get_hq_from_newsagencies()

@@ -2,7 +2,6 @@
 Setup MySQL container using Docker SDK
 """
 import time
-
 import docker
 import mysql.connector
 from mysql.connector import Error
