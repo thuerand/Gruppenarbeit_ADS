@@ -26,7 +26,7 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
     - Verschiedene Werte für die Marktdaten wurden ausgelesen und werden im EDA auf dem Index.hmtl angezeigt
 
 (5) Verwendung eines ML Frameworks/Library (tensorflow/keras, sklearn oder im Kurs nicht betrachtete wie pytorch)
-    - sklearn wurde in diesem Project verwendet, um den Kurs der Cryptocurrencies zu berechnen. 
+    - Sklearn wurde in diesem Project verwendet, um den Kurs der Cryptocurrencies zu berechnen. 
 
 (6) Erstellen von Modellvorhersagen
     - I.O.
@@ -39,26 +39,25 @@ Das Projekt muss mehrere im Modul vorgestellte Themen integrieren, im Minimum si
     - MAE
     - R2
 (9) Bereitstellung des Materials (Daten, Jupyter Notebooks, ...) auf Moodle
-    Muss am schluss gemacht werden!!!
+    - Muss am schluss gemacht werden
 
 Zusatzpunkte für Projektarbeit, falls Folgendes erfüllt (max. 7 Punkte):
 (1) Kreativität der Umsetzung (kreativ ist alles, was in den Lektionen und Übungen nicht vorgegeben wurde)
     Zeigen der Resultate in einem html-File
 
 (2) Verwendung von Docker Containern (Docker Compose) für die Bearbeitung und Speicherung der Daten und die Modellierung
-    Ja(?), Bearbeitung und temporäres Speichern der Daten werden in mySQL gemacht. CSVs sind lediglich zum endgültigen Spechern gedacht.
+    Ja, Bearbeitung und temporäres Speichern der Daten werden in mySQL gemacht. CSVs sind lediglich zum endgültigen Spechern gedacht.
 
 (3) Integration und Visualisierung von geographischen Daten
     Koordinaten von HQ-Locations werden gefetched und in einer Map aufgezeigt. Die Map ist als Output im Result-Ordner.
 
 (4) Verwendung einer fortgeschrittenen Deep Learning Struktur/Technik (z.B.CNN, RNN, Transfer Learning, Transformers …)
-    - nein
+    - Zu wenig Daten vorhanden für eine solche Technik
 
 (5) Ermittlung von Modellierungshypothesen und Überprüfung von Modellierungsannahmen
-    - Müssen wir noch finden
 
 (6) Verwendung von im Unterricht behandelten NLP-Techniken
     "Reduzieren, Extrahieren" wurde verwendet (NLP-Technik; Library "textblob"), damit Sentimente der News-Titel einfach bestimmt werden können und dadurch die News eine positive oder negativer Gewichtung der Cryptokurse bekommen.
 
 (7) Verfügbarmachen des Pythoncodes / der Jupyter notebooks in einem (public) GitHub Repository
-    Ist bereits in einem Repo --> muss noch public gemacht werden!!!
+    - https://github.com/thuerand/Gruppenarbeit_ADS
